@@ -1,0 +1,134 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Expect_sco_log_get	sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	/^class Expect_sco_log_get:$/;"	c
+Expect_sco_log_get_set	sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	/^    ut_cols: ScoUtCols) -> int:$/;"	f
+Expect_sco_log_init	sco_log/ut_sco_log/ut_sco_log_init/Spec_sco_log_init.py	/^class Expect_sco_log_init:$/;"	c
+Expect_sco_log_init_set	sco_log/ut_sco_log/ut_sco_log_init/Spec_sco_log_init.py	/^    ut_cols: ScoUtCols) -> int:$/;"	f
+FormatterStub	sco_stub/logging/Formatter.py	/^class FormatterStub(Formatter):$/;"	c
+Formatter_stub	sco_stub/logging/Formatter.py	/^def Formatter_stub(fmt: str) -> Formatter:$/;"	f
+Input_sco_log_get	sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	/^class Input_sco_log_get:$/;"	c
+Input_sco_log_get_set	sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	/^    ut_cols: ScoUtCols) -> int:$/;"	f
+Input_sco_log_init	sco_log/ut_sco_log/ut_sco_log_init/Spec_sco_log_init.py	/^class Input_sco_log_init:$/;"	c
+Input_sco_log_init_set	sco_log/ut_sco_log/ut_sco_log_init/Spec_sco_log_init.py	/^    ut_cols: ScoUtCols) -> int:$/;"	f
+Judge_sco_log_get	sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	/^class Judge_sco_log_get:$/;"	c
+Judge_sco_log_get_set	sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	/^    ut_cols: ScoUtCols) -> int:$/;"	f
+Judge_sco_log_get_write	sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	/^    expect: Expect_sco_log_get, output_real: Expect_sco_log_get) -> ScoRc:$/;"	f
+Judge_sco_log_init	sco_log/ut_sco_log/ut_sco_log_init/Spec_sco_log_init.py	/^class Judge_sco_log_init:$/;"	c
+Judge_sco_log_init_set	sco_log/ut_sco_log/ut_sco_log_init/Spec_sco_log_init.py	/^    ut_cols: ScoUtCols) -> int:$/;"	f
+Judge_sco_log_init_write	sco_log/ut_sco_log/ut_sco_log_init/Spec_sco_log_init.py	/^    expect: Expect_sco_log_init, output_real: Expect_sco_log_init) -> ScoRc:$/;"	f
+LoggerStub	sco_stub/logging/Logger.py	/^class LoggerStub(Logger):$/;"	c
+LoggerStub_addHandler	sco_stub/logging/Logger.py	/^class LoggerStub_addHandler:$/;"	c
+LoggerStub_setLevel	sco_stub/logging/Logger.py	/^class LoggerStub_setLevel:$/;"	c
+Logger_stub	sco_stub/logging/Logger.py	/^def Logger_stub() -> Logger:$/;"	f
+Number_sco_log_get	sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	/^class Number_sco_log_get:$/;"	c
+Number_sco_log_get_set	sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	/^    ut_cols: ScoUtCols) -> int:$/;"	f
+Number_sco_log_init	sco_log/ut_sco_log/ut_sco_log_init/Spec_sco_log_init.py	/^class Number_sco_log_init:$/;"	c
+Number_sco_log_init_set	sco_log/ut_sco_log/ut_sco_log_init/Spec_sco_log_init.py	/^    ut_cols: ScoUtCols) -> int:$/;"	f
+Output_sco_log_get	sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	/^class Output_sco_log_get:$/;"	c
+Output_sco_log_get_set	sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	/^    ut_cols: ScoUtCols) -> int:$/;"	f
+Output_sco_log_get_write	sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	/^    output_real: Expect_sco_log_get) -> None:$/;"	f
+Output_sco_log_init	sco_log/ut_sco_log/ut_sco_log_init/Spec_sco_log_init.py	/^class Output_sco_log_init:$/;"	c
+Output_sco_log_init_set	sco_log/ut_sco_log/ut_sco_log_init/Spec_sco_log_init.py	/^    ut_cols: ScoUtCols) -> int:$/;"	f
+Output_sco_log_init_write	sco_log/ut_sco_log/ut_sco_log_init/Spec_sco_log_init.py	/^    output_real: Expect_sco_log_init) -> None:$/;"	f
+SCO_CB_ANY_T	sco_bas/sco_def.py	/^SCO_CB_ANY_T = Callable[[Any], Any]$/;"	v
+SCO_UT_AN_ITEM_T	sco_ods/sco_ut.py	/^    ]$/;"	v
+ScoEnum	sco_bas/ScoEnum.py	/^class ScoEnum(Enum):$/;"	c
+ScoEzodfCellSpan	sco_bas/ScoEzodfCellSpan.py	/^class ScoEzodfCellSpan(ScoEnum):$/;"	c
+ScoEzodfCellValueType	sco_bas/ScoEzodfCellValueType.py	/^class ScoEzodfCellValueType(ScoEnum):$/;"	c
+ScoOdsRng	sco_ods/ScoOdsRng.py	/^class ScoOdsRng:$/;"	c
+ScoOdsRng_create	sco_ods/ScoOdsRng.py	/^def ScoOdsRng_create(start: int, length: int) -> ScoOdsRng:$/;"	f
+ScoRc	sco_bas/ScoRc.py	/^class ScoRc(ScoEnum):$/;"	c
+ScoStubComs	sco_stub/ScoStubComs.py	/^class ScoStubComs(Generic[T]):$/;"	c
+ScoStubComs_init	sco_stub/ScoStubComs.py	/^def ScoStubComs_init(this: ScoStubComs[T]) -> ScoRc:$/;"	f
+ScoStubInit	sco_stub/ScoStubComs.py	/^class ScoStubInit(ScoEnum):$/;"	c
+ScoUtCols	sco_ods/ScoUtCols.py	/^class ScoUtCols:$/;"	c
+ScoUtCols_init	sco_ods/ScoUtCols.py	/^def ScoUtCols_init(this: ScoUtCols) -> None:$/;"	f
+ScoUtCols_set	sco_ods/ScoUtCols.py	/^def ScoUtCols_set(this: ScoUtCols, mat: list[list[Cell]]) -> None:$/;"	f
+ScoUtHead	sco_ods/ScoUtHead.py	/^class ScoUtHead(ScoEnum):$/;"	c
+Sco_int	sco_bas/sco_def.py	/^class Sco_int:$/;"	c
+Sco_str	sco_bas/sco_def.py	/^class Sco_str:$/;"	c
+StreamHandlerStub	sco_stub/logging/StreamHandler.py	/^class StreamHandlerStub(StreamHandler):$/;"	c
+StreamHandlerStub_setFormatter	sco_stub/logging/StreamHandler.py	/^class StreamHandlerStub_setFormatter:$/;"	c
+StreamHandlerStub_setLevel	sco_stub/logging/StreamHandler.py	/^class StreamHandlerStub_setLevel:$/;"	c
+StreamHandler_stub	sco_stub/logging/StreamHandler.py	/^def StreamHandler_stub(stream: TextIOWrapper = None) -> StreamHandler:$/;"	f
+StubCom_getLogger	sco_stub/logging/getLogger.py	/^class StubCom_getLogger:$/;"	c
+StubCom_sco_log_get	sco_stub/sco_log/sco_log_get.py	/^class StubCom_sco_log_get:$/;"	c
+Stub_sco_log_get	sco_log/ut_sco_log/ut_sco_log_get/Stub_sco_log_get.py	/^class Stub_sco_log_get:$/;"	c
+Stub_sco_log_get_end	sco_log/ut_sco_log/ut_sco_log_get/Stub_sco_log_get.py	/^def Stub_sco_log_get_end(this: Stub_sco_log_get) -> None:$/;"	f
+Stub_sco_log_get_get	sco_log/ut_sco_log/ut_sco_log_get/Stub_sco_log_get.py	/^    -> None:$/;"	f
+Stub_sco_log_get_set	sco_log/ut_sco_log/ut_sco_log_get/Stub_sco_log_get.py	/^    -> None:$/;"	f
+Stub_sco_log_get_start	sco_log/ut_sco_log/ut_sco_log_get/Stub_sco_log_get.py	/^def Stub_sco_log_get_start(this: Stub_sco_log_get) -> None:$/;"	f
+Stub_sco_log_init	sco_log/ut_sco_log/ut_sco_log_init/Stub_sco_log_init.py	/^class Stub_sco_log_init:$/;"	c
+Stub_sco_log_init_end	sco_log/ut_sco_log/ut_sco_log_init/Stub_sco_log_init.py	/^def Stub_sco_log_init_end(this: Stub_sco_log_init) -> None:$/;"	f
+Stub_sco_log_init_get	sco_log/ut_sco_log/ut_sco_log_init/Stub_sco_log_init.py	/^    -> None:$/;"	f
+Stub_sco_log_init_get_log	sco_log/ut_sco_log/ut_sco_log_init/Stub_sco_log_init.py	/^    -> None:$/;"	f
+Stub_sco_log_init_get_sth	sco_log/ut_sco_log/ut_sco_log_init/Stub_sco_log_init.py	/^    (sth: StreamHandlerStub, get: Expect_sco_log_init) -> None:$/;"	f
+Stub_sco_log_init_set	sco_log/ut_sco_log/ut_sco_log_init/Stub_sco_log_init.py	/^    -> None:$/;"	f
+Stub_sco_log_init_set_log	sco_log/ut_sco_log/ut_sco_log_init/Stub_sco_log_init.py	/^def Stub_sco_log_init_set_log(log: LoggerStub) -> None:$/;"	f
+Stub_sco_log_init_set_sth	sco_log/ut_sco_log/ut_sco_log_init/Stub_sco_log_init.py	/^def Stub_sco_log_init_set_sth(sth: StreamHandlerStub) -> None:$/;"	f
+Stub_sco_log_init_start	sco_log/ut_sco_log/ut_sco_log_init/Stub_sco_log_init.py	/^def Stub_sco_log_init_start(this: Stub_sco_log_init) -> None:$/;"	f
+T	sco_stub/ScoStubComs.py	/^T = TypeVar("T")$/;"	v
+__eq__	sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	/^    def __eq__(self, other: object) -> bool:$/;"	m	class:Expect_sco_log_get	file:
+__eq__	sco_log/ut_sco_log/ut_sco_log_init/Spec_sco_log_init.py	/^    def __eq__(self, other: object) -> bool:$/;"	m	class:Expect_sco_log_init	file:
+__init__	sco_bas/ScoEnum.py	/^    def __init__(self, *args: tuple) -> None:$/;"	m	class:ScoEnum
+__init__	sco_bas/sco_def.py	/^    def __init__(self) -> None:$/;"	m	class:Sco_int
+__init__	sco_bas/sco_def.py	/^    def __init__(self) -> None:$/;"	m	class:Sco_str
+__init__	sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	/^    def __init__(self) -> None:$/;"	m	class:Expect_sco_log_get
+__init__	sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	/^    def __init__(self) -> None:$/;"	m	class:Input_sco_log_get
+__init__	sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	/^    def __init__(self) -> None:$/;"	m	class:Judge_sco_log_get
+__init__	sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	/^    def __init__(self) -> None:$/;"	m	class:Number_sco_log_get
+__init__	sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	/^    def __init__(self) -> None:$/;"	m	class:Output_sco_log_get
+__init__	sco_log/ut_sco_log/ut_sco_log_get/Stub_sco_log_get.py	/^    def __init__(self) -> None:$/;"	m	class:Stub_sco_log_get
+__init__	sco_log/ut_sco_log/ut_sco_log_init/Spec_sco_log_init.py	/^    def __init__(self) -> None:$/;"	m	class:Expect_sco_log_init
+__init__	sco_log/ut_sco_log/ut_sco_log_init/Spec_sco_log_init.py	/^    def __init__(self) -> None:$/;"	m	class:Input_sco_log_init
+__init__	sco_log/ut_sco_log/ut_sco_log_init/Spec_sco_log_init.py	/^    def __init__(self) -> None:$/;"	m	class:Judge_sco_log_init
+__init__	sco_log/ut_sco_log/ut_sco_log_init/Spec_sco_log_init.py	/^    def __init__(self) -> None:$/;"	m	class:Number_sco_log_init
+__init__	sco_log/ut_sco_log/ut_sco_log_init/Spec_sco_log_init.py	/^    def __init__(self) -> None:$/;"	m	class:Output_sco_log_init
+__init__	sco_log/ut_sco_log/ut_sco_log_init/Stub_sco_log_init.py	/^    def __init__(self) -> None:$/;"	m	class:Stub_sco_log_init
+__init__	sco_ods/ScoOdsRng.py	/^    def __init__(self) -> None:$/;"	m	class:ScoOdsRng
+__init__	sco_ods/ScoUtCols.py	/^    def __init__(self) -> None:$/;"	m	class:ScoUtCols
+__init__	sco_stub/ScoStubComs.py	/^    def __init__(self) -> None:$/;"	m	class:ScoStubComs
+__init__	sco_stub/logging/Formatter.py	/^    def __init__(self):$/;"	m	class:FormatterStub
+__init__	sco_stub/logging/Logger.py	/^    def __init__(self) -> None:$/;"	m	class:LoggerStub
+__init__	sco_stub/logging/Logger.py	/^    def __init__(self) -> None:$/;"	m	class:LoggerStub_addHandler
+__init__	sco_stub/logging/Logger.py	/^    def __init__(self) -> None:$/;"	m	class:LoggerStub_setLevel
+__init__	sco_stub/logging/StreamHandler.py	/^    def __init__(self) -> None:$/;"	m	class:StreamHandlerStub
+__init__	sco_stub/logging/StreamHandler.py	/^    def __init__(self) -> None:$/;"	m	class:StreamHandlerStub_setFormatter
+__init__	sco_stub/logging/StreamHandler.py	/^    def __init__(self) -> None:$/;"	m	class:StreamHandlerStub_setLevel
+__init__	sco_stub/logging/getLogger.py	/^    def __init__(self) -> None:$/;"	m	class:StubCom_getLogger
+__init__	sco_stub/sco_log/sco_log_get.py	/^    def __init__(self) -> None:$/;"	m	class:StubCom_sco_log_get
+__new__	sco_bas/ScoEnum.py	/^    def __new__(cls: Type, *args: tuple) -> Any:$/;"	m	class:ScoEnum	file:
+addHandler	sco_stub/logging/Logger.py	/^    def addHandler(self, hdlr: Handler) -> None:$/;"	m	class:LoggerStub
+g_StubComs_Formatter_get	sco_stub/logging/Formatter.py	/^def g_StubComs_Formatter_get() -> StubComs_Formatter:$/;"	f
+g_StubComs_Logger_get	sco_stub/logging/Logger.py	/^def g_StubComs_Logger_get() -> StubComs_Logger:$/;"	f
+g_StubComs_StreamHandler_get	sco_stub/logging/StreamHandler.py	/^def g_StubComs_StreamHandler_get() -> StubComs_StreamHandler:$/;"	f
+g_StubComs_getLogger_get	sco_stub/logging/getLogger.py	/^def g_StubComs_getLogger_get() -> StubComs_getLogger:$/;"	f
+g_StubComs_sco_log_get_get	sco_stub/sco_log/sco_log_get.py	/^def g_StubComs_sco_log_get_get() -> StubComs_sco_log_get:$/;"	f
+getLogger_stub	sco_stub/logging/getLogger.py	/^def getLogger_stub(name: str) -> Optional[Logger]:$/;"	f
+main	sco_log/fd_sco_log/sco_log_usage.py	/^def main():$/;"	f
+sco_log_get	sco_log/sco_log.py	/^def sco_log_get() -> Logger:$/;"	f
+sco_log_get_stub	sco_stub/sco_log/sco_log_get.py	/^def sco_log_get_stub() -> Optional[Logger]:$/;"	f
+sco_log_init	sco_log/sco_log.py	/^def sco_log_init() -> None:$/;"	f
+sco_module_eval	sco_bas/sco_bltin.py	/^def sco_module_eval(frm: str, imp: str) -> tuple[ScoRc, Any]:$/;"	f
+sco_ods_get_col_rng	sco_ods/sco_ods.py	/^    -> tuple[int, ScoOdsRng]:$/;"	f
+sco_ods_open	sco_ods/sco_ods.py	/^def sco_ods_open(fname: str) -> Optional[PackagedDocument]:$/;"	f
+sco_ods_save	sco_ods/sco_ods.py	/^def sco_ods_save(ods: PackagedDocument) -> ScoRc:$/;"	f
+sco_try_cb_any	sco_bas/sco_bltin.py	/^    -> tuple[ScoRc, Any]:$/;"	f
+sco_ut_cell_get_eval	sco_ods/sco_ut.py	/^    -> Any:$/;"	f
+sco_ut_cell_get_int	sco_ods/sco_ut.py	/^def sco_ut_cell_get_int(this: Cell, io_res: Optional[Sco_int]) -> int:$/;"	f
+sco_ut_get_cells	sco_ods/sco_ut.py	/^    head: ScoUtHead) -> list[Cell]:$/;"	f
+sco_ut_get_row_rng	sco_ods/sco_ut.py	/^    col_rng: ScoOdsRng) -> ScoOdsRng:$/;"	f
+sco_ut_run	sco_ods/sco_ut.py	/^def sco_ut_run(fname: str, sheetfnc: dict[str, SCO_UT_AN_ITEM_T]) -> ScoRc:$/;"	f
+sco_ut_run_matrix	sco_ods/sco_ut.py	/^    fnc: SCO_UT_AN_ITEM_T) -> ScoRc:$/;"	f
+sco_ut_run_sheet	sco_ods/sco_ut.py	/^def sco_ut_run_sheet(sheet: Table, fnc: SCO_UT_AN_ITEM_T) -> ScoRc:$/;"	f
+setFormatter	sco_stub/logging/StreamHandler.py	/^    def setFormatter(self, fmt: Formatter) -> None:$/;"	m	class:StreamHandlerStub
+setLevel	sco_stub/logging/Logger.py	/^    def setLevel(self, level: Union[int, str]) -> None:$/;"	m	class:LoggerStub
+setLevel	sco_stub/logging/StreamHandler.py	/^    def setLevel(self, level: Union[int, str]) -> None:$/;"	m	class:StreamHandlerStub
+sub_function	sco_log/fd_sco_log/sco_log_usage.py	/^def sub_function(param):$/;"	f
+ut_sco_log_get	sco_log/ut_sco_log/ut_sco_log_get/ut_sco_log_get.py	/^    -> tuple[ScoRc, ScoRc]:$/;"	f
+ut_sco_log_init	sco_log/ut_sco_log/ut_sco_log_init/ut_sco_log_init.py	/^    -> tuple[ScoRc, ScoRc]:$/;"	f
+ut_sco_log_main	sco_log/ut_sco_log/ut_sco_log_main.py	/^def ut_sco_log_main() -> int:$/;"	f
