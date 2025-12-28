@@ -39,7 +39,7 @@ def sco_module_eval(frm: str, imp: str) -> tuple[ScoRc, Any]:
     result: ScoRc = ScoRc.OK
     stuff: Any = None
     mod: ModuleType
-    log: Final[Logger] = sco_log_get
+    log: Final[Logger] = sco_log_get()
 
     try:
         mod = import_module(frm)
@@ -53,33 +53,32 @@ def sco_module_eval(frm: str, imp: str) -> tuple[ScoRc, Any]:
     return (result, stuff)
 
 
-def sco_try_cb_any(cbf: SCO_CB_ANY_T, cbf_arg: Any, excs: tuple) \
-    -> tuple[ScoRc, Any]:
+def sco_try_cb_any(
+    f_cb: SCO_CB_ANY_T,
+    cb_arg: Any,
+    tt_exc: tuple[type[BaseException], ...]
+) -> tuple[Optional[BaseException], Any]:
 
-    result    : ScoRc  = ScoRc.SUCCESS
-    result_any: Any    = None
-    log: Final[Logger] = sco_log_get()
+    result_exc: Optional[BaseException] = None
+    result_any: Any = None
 
-    for exc in excs:
-        if (not BaseException in exc.__mro__[1:]):
-            result = ScoRc.FAILURE
-            log.error("Exception type must be derived from BaseException.")
+    for t_exc in tt_exc:
+        if not (isinstance(t_exc, type) and issubclass(t_exc, BaseException)):
+            result_exc = TypeError(f"Invalid exception type: {t_exc}")
             break
 
-    if (result == ScoRc.SUCCESS):
-        if (callable(cbf)):
-            if (0 < len(excs)):
-                try:
-                    result_any = cbf(cbf_arg)
+    if (not result_exc) and (not callable(f_cb)):
+        result_exc = TypeError("f_cb is not callable.")
 
-                except excs as exc:
-                    result = ScoRc.FAILURE
-                    log.error(f"{exc.__class__.__name__} in cbf()")
-            else:
-                result_any = cbf(cbf_arg)
+    if not result_exc:
+        if tt_exc:
+            try:
+                result_any = f_cb(cb_arg)
+
+            except tt_exc as t_exc:
+                result_exc = t_exc
         else:
-            result = ScoRc.FAILURE
-            log.error("cbf is not callable.")
+            result_any = f_cb(cb_arg)
 
-    return (result, result_any)
+    return (result_exc, result_any)
 
