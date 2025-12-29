@@ -24,7 +24,7 @@
 !_TAG_OUTPUT_VERSION	1.1	/current.age/
 !_TAG_PARSER_VERSION!Python	1.1	/current.age/
 !_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
-!_TAG_PROC_CWD	/home/sakae/st19740208/publish/python_package/sco_bas/	//
+!_TAG_PROC_CWD	/home/sakae/st19740208/publish/python_package/sco_log/	//
 !_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
@@ -60,7 +60,7 @@ Judge_sco_log_get_write	/home/sakae/st19740208/publish/python_package/sco_log/ut
 Judge_sco_log_init	/home/sakae/st19740208/publish/python_package/sco_log/ut_sco_log/ut_sco_log_init/Spec_sco_log_init.py	?^class Judge_sco_log_init:$?;"	c
 Judge_sco_log_init_set	/home/sakae/st19740208/publish/python_package/sco_log/ut_sco_log/ut_sco_log_init/Spec_sco_log_init.py	?^def Judge_sco_log_init_set(this: Judge_sco_log_init, cell_list: list[Cell], \\$?;"	f	typeref:typename:int
 Judge_sco_log_init_write	/home/sakae/st19740208/publish/python_package/sco_log/ut_sco_log/ut_sco_log_init/Spec_sco_log_init.py	?^def Judge_sco_log_init_write(this: Judge_sco_log_init, \\$?;"	f	typeref:typename:ScoRc
-LOG_FORMAT	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^LOG_FORMAT: Final[str] = \\$?;"	v	typeref:typename:Final[str]
+LOG_FORMAT	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^LOG_FORMAT: Final[str] = ($?;"	v	typeref:typename:Final[str]
 LOG_LEVEL	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^LOG_LEVEL : Final[int] = DEBUG$?;"	v	typeref:typename:Final[int]
 LOG_NAME	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^LOG_NAME  : Final[str] = "sco_log"$?;"	v	typeref:typename:Final[str]
 LoggerStub	/home/sakae/st19740208/publish/python_package/sco_stub/logging/Logger.py	?^class LoggerStub(Logger):$?;"	c
@@ -178,6 +178,7 @@ main	/home/sakae/st19740208/publish/python_package/sco_log/fd_sco_log/sco_log_us
 sco_log_get	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^def sco_log_get() -> Logger:$?;"	f	typeref:typename:Logger
 sco_log_get_stub	/home/sakae/st19740208/publish/python_package/sco_stub/sco_log/sco_log_get.py	?^def sco_log_get_stub() -> Optional[Logger]:$?;"	f	typeref:typename:Optional[Logger]
 sco_log_init	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^def sco_log_init() -> None:$?;"	f	typeref:typename:None
+sco_log_tee	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^def sco_log_tee(log: Logger, s_fpath: str):$?;"	f
 sco_module_eval	/home/sakae/st19740208/publish/python_package/sco_bas/sco_bltin.py	?^def sco_module_eval(frm: str, imp: str) -> tuple[ScoRc, Any]:$?;"	f	typeref:typename:tuple[ScoRc,Any]
 sco_ods_get_col_rng	/home/sakae/st19740208/publish/python_package/sco_ods/sco_ods.py	?^def sco_ods_get_col_rng(mat: list[list[Cell]], col_name: str) \\$?;"	f	typeref:typename:tuple[int,ScoOdsRng]
 sco_ods_open	/home/sakae/st19740208/publish/python_package/sco_ods/sco_ods.py	?^def sco_ods_open(fname: str) -> Optional[PackagedDocument]:$?;"	f	typeref:typename:Optional[PackagedDocument]
