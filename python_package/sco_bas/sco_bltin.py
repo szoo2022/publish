@@ -1,37 +1,15 @@
-#!/usr/bin/python3
+#!/usr/bin/env python
 # coding: UTF-8
 
 
-# typing.py
-from typing import \
-    Final, \
-    Any
-
-# types.py
-from types import \
-    ModuleType
-
-# logging.py
-from logging import \
-    Logger
-
-from importlib import \
-    import_module
-
-from varname import \
-    nameof
-
-# ScoRc.py
-from .ScoRc import \
-    ScoRc
-
-# sco_def.py
-from .sco_def  import \
-    SCO_CB_ANY_T
-
-# sco_log.py
-from sco_log.sco_log import \
-    sco_log_get
+from typing          import Final, Any, Optional
+from types           import ModuleType
+from logging         import Logger
+from importlib       import import_module
+from varname         import nameof
+from .ScoRc          import ScoRc
+from .sco_def        import SCO_CB_ANY_T
+from sco_log.sco_log import sco_log_get
 
 
 def sco_module_eval(frm: str, imp: str) -> tuple[ScoRc, Any]:

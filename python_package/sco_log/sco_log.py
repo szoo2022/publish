@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python
 # coding: UTF-8
 
 
@@ -27,22 +27,22 @@ LOG_FORMAT: Final[str] = (
 
 def sco_log_init() -> None:
 
-    fmt: Final[Formatter] = Formatter(LOG_FORMAT)
+    form    : Final[Formatter] = Formatter(LOG_FORMAT)
+    h_stream: Final[StreamHandler] = StreamHandler()
+    log     : Final[Logger] = sco_log_get()
 
-    sth: Final[StreamHandler] = StreamHandler()
-    sth.setLevel(LOG_LEVEL)
-    sth.setFormatter(fmt)
+    h_stream.setLevel(LOG_LEVEL)
+    h_stream.setFormatter(form)
 
-    log: Final[Logger] = sco_log_get()
     log.setLevel(LOG_LEVEL)
-    log.addHandler(sth)
+    log.addHandler(h_stream)
 
 
 def sco_log_get() -> Logger:
 
-    result: Final[Logger] = getLogger(LOG_NAME)
+    log: Final[Logger] = getLogger(LOG_NAME)
 
-    return result
+    return log
 
 
 @contextmanager
