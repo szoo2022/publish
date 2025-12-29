@@ -24,7 +24,7 @@
 !_TAG_OUTPUT_VERSION	1.1	/current.age/
 !_TAG_PARSER_VERSION!Python	1.1	/current.age/
 !_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
-!_TAG_PROC_CWD	/home/sakae/st19740208/publish/python_package/sco_log/	//
+!_TAG_PROC_CWD	/home/sakae/st19740208/publish/python_package/sco_file/	//
 !_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
@@ -168,6 +168,7 @@ __init__	/home/sakae/st19740208/publish/python_package/sco_stub/sco_log/sco_log_
 __new__	/home/sakae/st19740208/publish/python_package/sco_bas/ScoEnum.py	?^    def __new__(cls: Type, *args: tuple) -> Any:$?;"	m	class:ScoEnum	typeref:typename:Any
 addHandler	/home/sakae/st19740208/publish/python_package/sco_stub/logging/Logger.py	?^    def addHandler(self, hdlr: Handler) -> None:$?;"	m	class:LoggerStub	typeref:typename:None
 emit	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^    def emit(self, record):$?;"	m	class:ScoMemoryHandler
+file_tail_read_extract	/home/sakae/st19740208/publish/python_package/sco_file/sco_tail.py	?^def file_tail_read_extract(fio: BinaryIO, i_seek_tail: int, i_nline: int)\\$?;"	f	typeref:typename:list[bytes]
 g_StubComs_Formatter	/home/sakae/st19740208/publish/python_package/sco_stub/logging/Formatter.py	?^g_StubComs_Formatter: Final[StubComs_Formatter] = StubComs_Formatter()$?;"	v	typeref:typename:Final[StubComs_Formatter]
 g_StubComs_Formatter_get	/home/sakae/st19740208/publish/python_package/sco_stub/logging/Formatter.py	?^def g_StubComs_Formatter_get() -> StubComs_Formatter:$?;"	f	typeref:typename:StubComs_Formatter
 g_StubComs_Logger	/home/sakae/st19740208/publish/python_package/sco_stub/logging/Logger.py	?^g_StubComs_Logger: Final[StubComs_Logger] = StubComs_Logger()$?;"	v	typeref:typename:Final[StubComs_Logger]
@@ -180,6 +181,9 @@ g_StubComs_sco_log_get	/home/sakae/st19740208/publish/python_package/sco_stub/sc
 g_StubComs_sco_log_get_get	/home/sakae/st19740208/publish/python_package/sco_stub/sco_log/sco_log_get.py	?^def g_StubComs_sco_log_get_get() -> StubComs_sco_log_get:$?;"	f	typeref:typename:StubComs_sco_log_get
 getLogger_stub	/home/sakae/st19740208/publish/python_package/sco_stub/logging/getLogger.py	?^def getLogger_stub(name: str) -> Optional[Logger]:$?;"	f	typeref:typename:Optional[Logger]
 main	/home/sakae/st19740208/publish/python_package/sco_log/fd_sco_log/sco_log_usage.py	?^def main():$?;"	f
+mmap_tail	/home/sakae/st19740208/publish/python_package/sco_file/sco_tail.py	?^def mmap_tail(mio: mmap, i_nline: int) -> list[bytes]:$?;"	f	typeref:typename:list[bytes]
+sco_file_tail	/home/sakae/st19740208/publish/python_package/sco_file/sco_tail.py	?^def sco_file_tail(s_fpath: str, i_nline: int, s_enc: str = "utf-8")\\$?;"	f	typeref:typename:Optional[list[str]]
+sco_file_tail_read	/home/sakae/st19740208/publish/python_package/sco_file/sco_tail.py	?^def sco_file_tail_read(s_fpath: str, i_nline: int, s_enc: str = "utf-8")\\$?;"	f	typeref:typename:Optional[list[str]]
 sco_log_get	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^def sco_log_get() -> ScoLogger:$?;"	f	typeref:typename:ScoLogger
 sco_log_get_stub	/home/sakae/st19740208/publish/python_package/sco_stub/sco_log/sco_log_get.py	?^def sco_log_get_stub() -> Optional[Logger]:$?;"	f	typeref:typename:Optional[Logger]
 sco_log_init	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^def sco_log_init() -> None:$?;"	f	typeref:typename:None
