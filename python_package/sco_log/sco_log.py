@@ -2,15 +2,17 @@
 # coding: UTF-8
 
 
-from typing import Final
+from typing import Final, Optional
 
 from logging import (
     Logger,
     Formatter,
     StreamHandler,
     FileHandler,
+    Handler,
     DEBUG,
-    getLogger
+    getLogger,
+    setLoggerClass,
 )
 
 from contextlib import contextmanager
@@ -25,24 +27,57 @@ LOG_FORMAT: Final[str] = (
 )
 
 
+class ScoMemoryHandler(Handler):
+
+    def __init__(self):
+        super().__init__()
+        self.s_last = ""
+
+    def emit(self, record):
+        self.s_last = self.format(record)
+
+
+class ScoLogger(Logger):
+
+    def __init__(self, name, level=0):
+
+        super().__init__(name, level)
+        self.h_memory: Optional[ScoMemoryHandler] = None
+
+
 def sco_log_init() -> None:
 
+    setLoggerClass(ScoLogger)
+
+    log     : Final[ScoLogger] = sco_log_get()
     form    : Final[Formatter] = Formatter(LOG_FORMAT)
     h_stream: Final[StreamHandler] = StreamHandler()
-    log     : Final[Logger] = sco_log_get()
+    h_memory: Final[ScoMemoryHandler] = ScoMemoryHandler()
 
     h_stream.setLevel(LOG_LEVEL)
     h_stream.setFormatter(form)
 
+    h_memory.setLevel(LOG_LEVEL)
+    h_memory.setFormatter(form)
+
     log.setLevel(LOG_LEVEL)
     log.addHandler(h_stream)
+    log.addHandler(h_memory)
+    log.h_memory = h_memory
 
 
-def sco_log_get() -> Logger:
+def sco_log_get() -> ScoLogger:
 
-    log: Final[Logger] = getLogger(LOG_NAME)
+    log: Final[ScoLogger] = getLogger(LOG_NAME)
 
     return log
+
+
+def sco_log_last_get() -> str:
+
+    log: Final[ScoLogger] = getLogger(LOG_NAME)
+
+    return log.h_memory.s_last
 
 
 @contextmanager

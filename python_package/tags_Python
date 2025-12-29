@@ -24,7 +24,7 @@
 !_TAG_OUTPUT_VERSION	1.1	/current.age/
 !_TAG_PARSER_VERSION!Python	1.1	/current.age/
 !_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
-!_TAG_PROC_CWD	/home/sakae/st19740208/publish/python_package/sco_bas/	//
+!_TAG_PROC_CWD	/home/sakae/st19740208/publish/python_package/sco_log/	//
 !_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
@@ -92,6 +92,8 @@ STRING	/home/sakae/st19740208/publish/python_package/sco_bas/ScoEzodfCellValueTy
 ScoEnum	/home/sakae/st19740208/publish/python_package/sco_bas/ScoEnum.py	?^class ScoEnum(Enum):$?;"	c
 ScoEzodfCellSpan	/home/sakae/st19740208/publish/python_package/sco_bas/ScoEzodfCellSpan.py	?^class ScoEzodfCellSpan(ScoEnum):$?;"	c
 ScoEzodfCellValueType	/home/sakae/st19740208/publish/python_package/sco_bas/ScoEzodfCellValueType.py	?^class ScoEzodfCellValueType(ScoEnum):$?;"	c
+ScoLogger	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^class ScoLogger(Logger):$?;"	c
+ScoMemoryHandler	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^class ScoMemoryHandler(Handler):$?;"	c
 ScoOdsRng	/home/sakae/st19740208/publish/python_package/sco_ods/ScoOdsRng.py	?^class ScoOdsRng:$?;"	c
 ScoOdsRng_create	/home/sakae/st19740208/publish/python_package/sco_ods/ScoOdsRng.py	?^def ScoOdsRng_create(start: int, length: int) -> ScoOdsRng:$?;"	f	typeref:typename:ScoOdsRng
 ScoRc	/home/sakae/st19740208/publish/python_package/sco_bas/ScoRc.py	?^class ScoRc(ScoEnum):$?;"	c
@@ -137,6 +139,8 @@ __eq__	/home/sakae/st19740208/publish/python_package/sco_log/ut_sco_log/ut_sco_l
 __init__	/home/sakae/st19740208/publish/python_package/sco_bas/ScoEnum.py	?^    def __init__(self, *args: tuple) -> None:$?;"	m	class:ScoEnum	typeref:typename:None
 __init__	/home/sakae/st19740208/publish/python_package/sco_bas/sco_def.py	?^    def __init__(self) -> None:$?;"	m	class:Sco_int	typeref:typename:None
 __init__	/home/sakae/st19740208/publish/python_package/sco_bas/sco_def.py	?^    def __init__(self) -> None:$?;"	m	class:Sco_str	typeref:typename:None
+__init__	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^    def __init__(self):$?;"	m	class:ScoMemoryHandler
+__init__	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^    def __init__(self, name, level=0):$?;"	m	class:ScoLogger
 __init__	/home/sakae/st19740208/publish/python_package/sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	?^    def __init__(self) -> None:$?;"	m	class:Expect_sco_log_get	typeref:typename:None
 __init__	/home/sakae/st19740208/publish/python_package/sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	?^    def __init__(self) -> None:$?;"	m	class:Input_sco_log_get	typeref:typename:None
 __init__	/home/sakae/st19740208/publish/python_package/sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	?^    def __init__(self) -> None:$?;"	m	class:Judge_sco_log_get	typeref:typename:None
@@ -163,6 +167,7 @@ __init__	/home/sakae/st19740208/publish/python_package/sco_stub/logging/getLogge
 __init__	/home/sakae/st19740208/publish/python_package/sco_stub/sco_log/sco_log_get.py	?^    def __init__(self) -> None:$?;"	m	class:StubCom_sco_log_get	typeref:typename:None
 __new__	/home/sakae/st19740208/publish/python_package/sco_bas/ScoEnum.py	?^    def __new__(cls: Type, *args: tuple) -> Any:$?;"	m	class:ScoEnum	typeref:typename:Any
 addHandler	/home/sakae/st19740208/publish/python_package/sco_stub/logging/Logger.py	?^    def addHandler(self, hdlr: Handler) -> None:$?;"	m	class:LoggerStub	typeref:typename:None
+emit	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^    def emit(self, record):$?;"	m	class:ScoMemoryHandler
 g_StubComs_Formatter	/home/sakae/st19740208/publish/python_package/sco_stub/logging/Formatter.py	?^g_StubComs_Formatter: Final[StubComs_Formatter] = StubComs_Formatter()$?;"	v	typeref:typename:Final[StubComs_Formatter]
 g_StubComs_Formatter_get	/home/sakae/st19740208/publish/python_package/sco_stub/logging/Formatter.py	?^def g_StubComs_Formatter_get() -> StubComs_Formatter:$?;"	f	typeref:typename:StubComs_Formatter
 g_StubComs_Logger	/home/sakae/st19740208/publish/python_package/sco_stub/logging/Logger.py	?^g_StubComs_Logger: Final[StubComs_Logger] = StubComs_Logger()$?;"	v	typeref:typename:Final[StubComs_Logger]
@@ -175,9 +180,10 @@ g_StubComs_sco_log_get	/home/sakae/st19740208/publish/python_package/sco_stub/sc
 g_StubComs_sco_log_get_get	/home/sakae/st19740208/publish/python_package/sco_stub/sco_log/sco_log_get.py	?^def g_StubComs_sco_log_get_get() -> StubComs_sco_log_get:$?;"	f	typeref:typename:StubComs_sco_log_get
 getLogger_stub	/home/sakae/st19740208/publish/python_package/sco_stub/logging/getLogger.py	?^def getLogger_stub(name: str) -> Optional[Logger]:$?;"	f	typeref:typename:Optional[Logger]
 main	/home/sakae/st19740208/publish/python_package/sco_log/fd_sco_log/sco_log_usage.py	?^def main():$?;"	f
-sco_log_get	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^def sco_log_get() -> Logger:$?;"	f	typeref:typename:Logger
+sco_log_get	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^def sco_log_get() -> ScoLogger:$?;"	f	typeref:typename:ScoLogger
 sco_log_get_stub	/home/sakae/st19740208/publish/python_package/sco_stub/sco_log/sco_log_get.py	?^def sco_log_get_stub() -> Optional[Logger]:$?;"	f	typeref:typename:Optional[Logger]
 sco_log_init	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^def sco_log_init() -> None:$?;"	f	typeref:typename:None
+sco_log_last_get	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^def sco_log_last_get() -> str:$?;"	f	typeref:typename:str
 sco_log_tee	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^def sco_log_tee(log: Logger, s_fpath: str):$?;"	f
 sco_module_eval	/home/sakae/st19740208/publish/python_package/sco_bas/sco_bltin.py	?^def sco_module_eval(frm: str, imp: str) -> tuple[ScoRc, Any]:$?;"	f	typeref:typename:tuple[ScoRc,Any]
 sco_ods_get_col_rng	/home/sakae/st19740208/publish/python_package/sco_ods/sco_ods.py	?^def sco_ods_get_col_rng(mat: list[list[Cell]], col_name: str) \\$?;"	f	typeref:typename:tuple[int,ScoOdsRng]
