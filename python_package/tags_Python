@@ -181,7 +181,6 @@ g_StubComs_sco_log_get	/home/sakae/st19740208/publish/python_package/sco_stub/sc
 g_StubComs_sco_log_get_get	/home/sakae/st19740208/publish/python_package/sco_stub/sco_log/sco_log_get.py	?^def g_StubComs_sco_log_get_get() -> StubComs_sco_log_get:$?;"	f	typeref:typename:StubComs_sco_log_get
 getLogger_stub	/home/sakae/st19740208/publish/python_package/sco_stub/logging/getLogger.py	?^def getLogger_stub(name: str) -> Optional[Logger]:$?;"	f	typeref:typename:Optional[Logger]
 main	/home/sakae/st19740208/publish/python_package/sco_log/fd_sco_log/sco_log_usage.py	?^def main():$?;"	f
-mmap_tail	/home/sakae/st19740208/publish/python_package/sco_file/sco_tail.py	?^def mmap_tail(mio: mmap, i_nline: int) -> list[bytes]:$?;"	f	typeref:typename:list[bytes]
 sco_file_tail	/home/sakae/st19740208/publish/python_package/sco_file/sco_tail.py	?^def sco_file_tail(s_fpath: str, i_nline: int, s_enc: str = "utf-8")\\$?;"	f	typeref:typename:Optional[list[str]]
 sco_file_tail_read	/home/sakae/st19740208/publish/python_package/sco_file/sco_tail.py	?^def sco_file_tail_read(s_fpath: str, i_nline: int, s_enc: str = "utf-8")\\$?;"	f	typeref:typename:Optional[list[str]]
 sco_log_get	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^def sco_log_get() -> ScoLogger:$?;"	f	typeref:typename:ScoLogger
@@ -189,10 +188,12 @@ sco_log_get_stub	/home/sakae/st19740208/publish/python_package/sco_stub/sco_log/
 sco_log_init	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^def sco_log_init() -> None:$?;"	f	typeref:typename:None
 sco_log_last_get	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^def sco_log_last_get() -> str:$?;"	f	typeref:typename:str
 sco_log_tee	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^def sco_log_tee(log: Logger, s_fpath: str):$?;"	f
+sco_mmap_tail	/home/sakae/st19740208/publish/python_package/sco_file/sco_tail.py	?^def sco_mmap_tail(mio: mmap, i_nline: int) -> list[bytes]:$?;"	f	typeref:typename:list[bytes]
 sco_module_eval	/home/sakae/st19740208/publish/python_package/sco_bas/sco_bltin.py	?^def sco_module_eval(frm: str, imp: str) -> tuple[ScoRc, Any]:$?;"	f	typeref:typename:tuple[ScoRc,Any]
 sco_ods_get_col_rng	/home/sakae/st19740208/publish/python_package/sco_ods/sco_ods.py	?^def sco_ods_get_col_rng(mat: list[list[Cell]], col_name: str) \\$?;"	f	typeref:typename:tuple[int,ScoOdsRng]
 sco_ods_open	/home/sakae/st19740208/publish/python_package/sco_ods/sco_ods.py	?^def sco_ods_open(fname: str) -> Optional[PackagedDocument]:$?;"	f	typeref:typename:Optional[PackagedDocument]
 sco_ods_save	/home/sakae/st19740208/publish/python_package/sco_ods/sco_ods.py	?^def sco_ods_save(ods: PackagedDocument) -> ScoRc:$?;"	f	typeref:typename:ScoRc
+sco_str_tail	/home/sakae/st19740208/publish/python_package/sco_file/sco_tail.py	?^def sco_str_tail(s_in: str, i_nline: int) -> list[bytes]:$?;"	f	typeref:typename:list[bytes]
 sco_try_cb_any	/home/sakae/st19740208/publish/python_package/sco_bas/sco_bltin.py	?^def sco_try_cb_any($?;"	f	typeref:typename:tuple[Optional[BaseException],Any]
 sco_ut_cell_get_eval	/home/sakae/st19740208/publish/python_package/sco_ods/sco_ut.py	?^def sco_ut_cell_get_eval(this: Cell, io_res: Optional[Sco_int], frm: str) \\$?;"	f	typeref:typename:Any
 sco_ut_cell_get_int	/home/sakae/st19740208/publish/python_package/sco_ods/sco_ut.py	?^def sco_ut_cell_get_int(this: Cell, io_res: Optional[Sco_int]) -> int:$?;"	f	typeref:typename:int

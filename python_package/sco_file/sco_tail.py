@@ -9,6 +9,69 @@ from sco_log.sco_log import (
     sco_log_get
 )
 
+
+def sco_file_tail(s_fpath: str, i_nline: int, s_enc: str = "utf-8")\
+    -> Optional[list[str]]:
+
+    as_line: Optional[list[str]] = None
+    log    : Final[ScoLogger] = sco_log_get()
+
+    try:
+        with open(s_fpath, "rb") as fio:
+            fno: Final[int] = fio.fileno();
+
+            with mmap.mmap(fno, 0, access = mmap.ACCESS_READ) as mio:
+                ab_line: Final[list[bytes]] = sco_mmap_tail(mio, i_nline)
+                as_line = [b_line.decode(s_enc) for b_line in ab_line]
+
+    except (OSError, ValueError, UnicodeDecodeError) as exc:
+        log.error(f"{exc}")
+
+    return as_line
+
+
+def sco_mmap_tail(mio: mmap, i_nline: int) -> list[bytes]:
+
+    ab_line : Final[list[bytes]] = []
+    i_size  : Final[int] = mio.size()
+    i_pos   : int = i_size
+
+    while (- 1 < i_pos) and (len(ab_line) < i_nline):
+        i_new_pos: Final[int] = mio.rfind(b"\n", 0, i_pos)
+
+        if - 1 < i_new_pos:
+            if i_new_pos < (i_size - 1): # If a newline is found and it's not
+                                         # the very last byte of the file.
+                ab_line.insert(0, mio[i_new_pos + 1: i_pos + 1])
+        else:
+            ab_line.insert(0, mio[0: i_pos + 1])
+
+        i_pos = i_new_pos
+
+    return ab_line
+
+
+def sco_str_tail(s_in: str, i_nline: int) -> list[bytes]:
+
+    ab_line: Final[list[str]] = []
+    i_size : Final[int] = len(s_in)
+    i_pos  : int = i_size
+
+    while (- 1 < i_pos) and (len(ab_line) < i_nline):
+        i_new_pos: Final[int] = s_in.rfind("\n", 0, i_pos)
+
+        if - 1 < i_new_pos:
+            if i_new_pos < (i_size - 1): # If a newline is found and it's not
+                                         # the very last byte of the file.
+                ab_line.insert(0, s_in[i_new_pos + 1: i_pos + 1])
+        else:
+            ab_line.insert(0, s_in[0: i_pos + 1])
+
+        i_pos = i_new_pos
+
+    return ab_line
+
+
 # slow version
 def sco_file_tail_read(s_fpath: str, i_nline: int, s_enc: str = "utf-8")\
     -> Optional[list[str]]:
@@ -61,47 +124,6 @@ def file_tail_read_extract(fio: BinaryIO, i_seek_tail: int, i_nline: int)\
         ab_line.append(b_line)
 
     ab_line.reverse()
-    return ab_line
-
-
-def sco_file_tail(s_fpath: str, i_nline: int, s_enc: str = "utf-8")\
-    -> Optional[list[str]]:
-
-    as_line: Optional[list[str]] = None
-    log    : Final[ScoLogger] = sco_log_get()
-
-    try:
-        with open(s_fpath, "rb") as fio:
-            fno: Final[int] = fio.fileno();
-
-            with mmap.mmap(fno, 0, access = mmap.ACCESS_READ) as mio:
-                ab_line: Final[list[bytes]] = mmap_tail(mio, i_nline)
-                as_line = [b_line.decode(s_enc) for b_line in ab_line]
-
-    except (OSError, ValueError, UnicodeDecodeError) as exc:
-        log.error(f"{exc}")
-
-    return as_line
-
-
-def mmap_tail(mio: mmap, i_nline: int) -> list[bytes]:
-
-    ab_line : Final[list[bytes]] = []
-    i_size  : Final[int] = mio.size()
-    i_pos   : int = i_size
-
-    while (- 1 < i_pos) and (len(ab_line) < i_nline):
-        i_new_pos: Final[int] = mio.rfind(b"\n", 0, i_pos)
-
-        if - 1 < i_new_pos:
-            if i_new_pos < (i_size - 1): # If a newline is found and it's not
-                                         # the very last byte of the file.
-                ab_line.insert(0, mio[i_new_pos + 1: i_pos + 1])
-        else:
-            ab_line.insert(0, mio[0: i_pos + 1])
-
-        i_pos = i_new_pos
-
     return ab_line
 
 
