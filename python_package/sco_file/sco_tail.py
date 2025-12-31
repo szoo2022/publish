@@ -48,7 +48,7 @@ def sco_mmap_tail(mio: mmap, i_nline: int) -> list[bytes]:
 
         i_pos = i_new_pos
 
-    return ab_line
+    return (i_pos + 1, ab_line)
 
 
 def sco_str_tail(s_in: str, i_nline: int) -> list[bytes]:
@@ -69,7 +69,7 @@ def sco_str_tail(s_in: str, i_nline: int) -> list[bytes]:
 
         i_pos = i_new_pos
 
-    return ab_line
+    return (i_pos + 1, ab_line)
 
 
 # slow version
