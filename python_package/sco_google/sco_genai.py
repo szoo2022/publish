@@ -20,7 +20,7 @@ from sco_log.sco_log import (
 )
 
 
-GS_GENAI_MODEL : Final[str] = "gemini-2.5-flash"
+GS_GENAI_MODEL : Final[str] = "models/gemini-flash-lite-latest"
 GS_INPUT_VERIFY: Final[str] = "genai"
 
 
@@ -72,6 +72,7 @@ def sco_genai_chatting(chat: chats.Chat, s_fpath_in: str, s_fpath_out: str,
     f_cycle_sec : float = 1.0
     f_last_mtime: float = - 1.0
     f_new_mtime : float
+    log         : Final[ScoLogger] = sco_log_get()
 
     while True:
         send_ret: Genai2WayRet = Genai2WayRet.NG_SEND
