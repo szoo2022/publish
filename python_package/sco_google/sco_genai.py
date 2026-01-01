@@ -5,9 +5,10 @@
 import time
 import os
 from enum import auto
-from typing import Final, Optional
+from typing import Final, Optional, Callable, Any
 from google import genai
 from google.genai import chats, types
+from selenium.webdriver.remote.webdriver import WebDriver
 from sco_bas.ScoEnum import ScoEnum
 from sco_file.sco_tail import sco_str_tail
 from sco_file.sco_truncate import sco_file_truncate
@@ -23,14 +24,21 @@ GS_GENAI_MODEL : Final[str] = "gemini-2.5-flash"
 GS_INPUT_VERIFY: Final[str] = "genai"
 
 
-class GenaiSendRet(ScoEnum):
+class Genai2WayRet(ScoEnum):
 
     OK       : Final[int] = auto()
+    EMPTY    : Final[int] = auto()
     NG_SEND  : Final[int] = auto()
     NG_OUTPUT: Final[int] = auto()
 
 
-def genai_client() ->\
+class ScoGenaiUser:
+
+    def __init__(self):
+        self.web_drv: Optional[WebDriver] = None
+
+
+def sco_genai_client() ->\
     tuple[Optional[Exception], Optional[genai.Client]]:
 
     client    : genai.Client = None
@@ -44,7 +52,7 @@ def genai_client() ->\
     return (result_exc, client)
 
 
-def genai_chat_create(client: genai.Client) ->\
+def sco_genai_chat_create(client: genai.Client) ->\
     tuple[Optional[Exception], Optional[chats.Chat]]:
 
     chat      : Optional[chats.Chat] = None
@@ -57,14 +65,16 @@ def genai_chat_create(client: genai.Client) ->\
     return (result_exc, chat)
 
 
-def genai_chatting(chat: chats.Chat, s_fpath_in: str, s_fpath_out: str) -> None:
+def sco_genai_chatting(chat: chats.Chat, s_fpath_in: str, s_fpath_out: str,
+    f_cb: Optional[Callable[[str, Any], None]], user: Optional[ScoGenaiUser])\
+    -> None:
 
     f_cycle_sec : float = 1.0
     f_last_mtime: float = - 1.0
     f_new_mtime : float
 
     while True:
-        send_ret: GenaiSendRet = GenaiSendRet.NG_SEND
+        send_ret: Genai2WayRet = Genai2WayRet.NG_SEND
 
         f_new_mtime = input_wait(s_fpath_in, f_cycle_sec, f_last_mtime)
         exc, s_in, i_truncate = input_signature(s_fpath_in)
@@ -78,8 +88,11 @@ def genai_chatting(chat: chats.Chat, s_fpath_in: str, s_fpath_out: str) -> None:
         else:
             f_cycle_sec = 10.0
 
-        if send_ret == GenaiSendRet.OK:
+        if (send_ret == Genai2WayRet.OK) or (send_ret == Genai2WayRet.EMPTY):
             exc = sco_file_truncate(s_fpath_in, i_truncate)
+
+            if (send_ret == Genai2WayRet.OK) and callable(f_cb):
+                f_cb(s_fpath_out, user)
 
         if exc:
             log.error(f"{exc}")
@@ -128,10 +141,10 @@ def input_signature(s_fpath: str) -> tuple[Optional[Exception], str, int]:
 
 
 def genai_2way(chat: chats.Chat, s_in: str, s_fpath_out: str) ->\
-    tuple[Optional[Exception], GenaiSendRet]:
+    tuple[Optional[Exception], Genai2WayRet]:
 
     exc : Optional[Exception] = None
-    ret : GenaiSendRet = GenaiSendRet.OK
+    ret : Genai2WayRet = Genai2WayRet.EMPTY
 
     if (1024 < len(s_in)) or s_in.strip():
         exc, res = send_message(chat, s_in)
@@ -144,10 +157,12 @@ def genai_2way(chat: chats.Chat, s_in: str, s_fpath_out: str) ->\
             )
             exc, _ = sco_ftext_append(s_fpath_out, s_out)
 
-            if exc:
-                ret = GenaiSendRet.NG_OUTPUT
+            if not exc:
+                ret = Genai2WayRet.OK
+            else:
+                ret = Genai2WayRet.NG_OUTPUT
         else:
-            ret = GenaiSendRet.NG_SEND
+            ret = Genai2WayRet.NG_SEND
 
     return (exc, ret)
 

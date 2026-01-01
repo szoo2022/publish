@@ -24,7 +24,7 @@
 !_TAG_OUTPUT_VERSION	1.1	/current.age/
 !_TAG_PARSER_VERSION!Python	1.1	/current.age/
 !_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
-!_TAG_PROC_CWD	/home/sakae/st19740208/publish/python_package/sco_file/	//
+!_TAG_PROC_CWD	/home/sakae/st19740208/publish/python_package/sco_google/	//
 !_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
@@ -40,6 +40,7 @@ BOOL	/home/sakae/st19740208/publish/python_package/sco_bas/ScoEzodfCellValueType
 COL	/home/sakae/st19740208/publish/python_package/sco_bas/ScoEzodfCellSpan.py	?^    COL: Final = auto()$?;"	v	class:ScoEzodfCellSpan	typeref:typename:Final
 CURRENCY	/home/sakae/st19740208/publish/python_package/sco_bas/ScoEzodfCellValueType.py	?^    CURRENCY: Final[str] = "currency"$?;"	v	class:ScoEzodfCellValueType	typeref:typename:Final[str]
 DATE	/home/sakae/st19740208/publish/python_package/sco_bas/ScoEzodfCellValueType.py	?^    DATE    : Final[str] = "date"$?;"	v	class:ScoEzodfCellValueType	typeref:typename:Final[str]
+EMPTY	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^    EMPTY    : Final[int] = auto()$?;"	v	class:Genai2WayRet	typeref:typename:Final[int]
 EXPECT	/home/sakae/st19740208/publish/python_package/sco_ods/ScoUtHead.py	?^    EXPECT: Final[str] = "Expected values of outputs"$?;"	v	class:ScoUtHead	typeref:typename:Final[str]
 Expect_sco_log_get	/home/sakae/st19740208/publish/python_package/sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	?^class Expect_sco_log_get:$?;"	c
 Expect_sco_log_get_set	/home/sakae/st19740208/publish/python_package/sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	?^def Expect_sco_log_get_set(this: Expect_sco_log_get, cell_list: list[Cell], \\$?;"	f	typeref:typename:int
@@ -47,6 +48,9 @@ Expect_sco_log_init	/home/sakae/st19740208/publish/python_package/sco_log/ut_sco
 Expect_sco_log_init_set	/home/sakae/st19740208/publish/python_package/sco_log/ut_sco_log/ut_sco_log_init/Spec_sco_log_init.py	?^def Expect_sco_log_init_set(this: Expect_sco_log_init, cell_list: list[Cell], \\$?;"	f	typeref:typename:int
 FormatterStub	/home/sakae/st19740208/publish/python_package/sco_stub/logging/Formatter.py	?^class FormatterStub(Formatter):$?;"	c
 Formatter_stub	/home/sakae/st19740208/publish/python_package/sco_stub/logging/Formatter.py	?^def Formatter_stub(fmt: str) -> Formatter:$?;"	f	typeref:typename:Formatter
+GS_GENAI_MODEL	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^GS_GENAI_MODEL : Final[str] = "gemini-2.5-flash"$?;"	v	typeref:typename:Final[str]
+GS_INPUT_VERIFY	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^GS_INPUT_VERIFY: Final[str] = "genai"$?;"	v	typeref:typename:Final[str]
+Genai2WayRet	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^class Genai2WayRet(ScoEnum):$?;"	c
 INPUT	/home/sakae/st19740208/publish/python_package/sco_ods/ScoUtHead.py	?^    INPUT : Final[str] = "Inputs"$?;"	v	class:ScoUtHead	typeref:typename:Final[str]
 INT	/home/sakae/st19740208/publish/python_package/sco_stub/ScoStubComs.py	?^    INT: Final[int] = 0x5A5A5A5A$?;"	v	class:ScoStubInit	typeref:typename:Final[int]
 Input_sco_log_get	/home/sakae/st19740208/publish/python_package/sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	?^class Input_sco_log_get:$?;"	c
@@ -68,6 +72,8 @@ LoggerStub_addHandler	/home/sakae/st19740208/publish/python_package/sco_stub/log
 LoggerStub_setLevel	/home/sakae/st19740208/publish/python_package/sco_stub/logging/Logger.py	?^class LoggerStub_setLevel:$?;"	c
 Logger_stub	/home/sakae/st19740208/publish/python_package/sco_stub/logging/Logger.py	?^def Logger_stub() -> Logger:$?;"	f	typeref:typename:Logger
 NG	/home/sakae/st19740208/publish/python_package/sco_bas/ScoRc.py	?^    NG: Final = auto()$?;"	v	class:ScoRc	typeref:typename:Final
+NG_OUTPUT	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^    NG_OUTPUT: Final[int] = auto()$?;"	v	class:Genai2WayRet	typeref:typename:Final[int]
+NG_SEND	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^    NG_SEND  : Final[int] = auto()$?;"	v	class:Genai2WayRet	typeref:typename:Final[int]
 NUMBER	/home/sakae/st19740208/publish/python_package/sco_ods/ScoUtHead.py	?^    NUMBER: Final[str] = "#"$?;"	v	class:ScoUtHead	typeref:typename:Final[str]
 NUMERIC	/home/sakae/st19740208/publish/python_package/sco_bas/ScoEzodfCellValueType.py	?^    NUMERIC : Final[str] = "float"$?;"	v	class:ScoEzodfCellValueType	typeref:typename:Final[str]
 Number_sco_log_get	/home/sakae/st19740208/publish/python_package/sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	?^class Number_sco_log_get:$?;"	c
@@ -75,6 +81,7 @@ Number_sco_log_get_set	/home/sakae/st19740208/publish/python_package/sco_log/ut_
 Number_sco_log_init	/home/sakae/st19740208/publish/python_package/sco_log/ut_sco_log/ut_sco_log_init/Spec_sco_log_init.py	?^class Number_sco_log_init:$?;"	c
 Number_sco_log_init_set	/home/sakae/st19740208/publish/python_package/sco_log/ut_sco_log/ut_sco_log_init/Spec_sco_log_init.py	?^def Number_sco_log_init_set(this: Number_sco_log_init, cell_list: list[Cell], \\$?;"	f	typeref:typename:int
 OK	/home/sakae/st19740208/publish/python_package/sco_bas/ScoRc.py	?^    OK: Final = auto()$?;"	v	class:ScoRc	typeref:typename:Final
+OK	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^    OK       : Final[int] = auto()$?;"	v	class:Genai2WayRet	typeref:typename:Final[int]
 OUTPUT	/home/sakae/st19740208/publish/python_package/sco_ods/ScoUtHead.py	?^    OUTPUT: Final[str] = "Outputs"$?;"	v	class:ScoUtHead	typeref:typename:Final[str]
 Output_sco_log_get	/home/sakae/st19740208/publish/python_package/sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	?^class Output_sco_log_get:$?;"	c
 Output_sco_log_get_set	/home/sakae/st19740208/publish/python_package/sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	?^def Output_sco_log_get_set(this: Output_sco_log_get, cell_list: list[Cell], \\$?;"	f	typeref:typename:int
@@ -92,6 +99,7 @@ STRING	/home/sakae/st19740208/publish/python_package/sco_bas/ScoEzodfCellValueTy
 ScoEnum	/home/sakae/st19740208/publish/python_package/sco_bas/ScoEnum.py	?^class ScoEnum(Enum):$?;"	c
 ScoEzodfCellSpan	/home/sakae/st19740208/publish/python_package/sco_bas/ScoEzodfCellSpan.py	?^class ScoEzodfCellSpan(ScoEnum):$?;"	c
 ScoEzodfCellValueType	/home/sakae/st19740208/publish/python_package/sco_bas/ScoEzodfCellValueType.py	?^class ScoEzodfCellValueType(ScoEnum):$?;"	c
+ScoGenaiUser	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^class ScoGenaiUser:$?;"	c
 ScoLogger	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^class ScoLogger(Logger):$?;"	c
 ScoMemoryHandler	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^class ScoMemoryHandler(Handler):$?;"	c
 ScoOdsRng	/home/sakae/st19740208/publish/python_package/sco_ods/ScoOdsRng.py	?^class ScoOdsRng:$?;"	c
@@ -139,6 +147,7 @@ __eq__	/home/sakae/st19740208/publish/python_package/sco_log/ut_sco_log/ut_sco_l
 __init__	/home/sakae/st19740208/publish/python_package/sco_bas/ScoEnum.py	?^    def __init__(self, *args: tuple) -> None:$?;"	m	class:ScoEnum	typeref:typename:None
 __init__	/home/sakae/st19740208/publish/python_package/sco_bas/sco_def.py	?^    def __init__(self) -> None:$?;"	m	class:Sco_int	typeref:typename:None
 __init__	/home/sakae/st19740208/publish/python_package/sco_bas/sco_def.py	?^    def __init__(self) -> None:$?;"	m	class:Sco_str	typeref:typename:None
+__init__	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^    def __init__(self):$?;"	m	class:ScoGenaiUser
 __init__	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^    def __init__(self):$?;"	m	class:ScoMemoryHandler
 __init__	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^    def __init__(self, name, level=0):$?;"	m	class:ScoLogger
 __init__	/home/sakae/st19740208/publish/python_package/sco_log/ut_sco_log/ut_sco_log_get/Spec_sco_log_get.py	?^    def __init__(self) -> None:$?;"	m	class:Expect_sco_log_get	typeref:typename:None
@@ -179,10 +188,19 @@ g_StubComs_getLogger	/home/sakae/st19740208/publish/python_package/sco_stub/logg
 g_StubComs_getLogger_get	/home/sakae/st19740208/publish/python_package/sco_stub/logging/getLogger.py	?^def g_StubComs_getLogger_get() -> StubComs_getLogger:$?;"	f	typeref:typename:StubComs_getLogger
 g_StubComs_sco_log_get	/home/sakae/st19740208/publish/python_package/sco_stub/sco_log/sco_log_get.py	?^g_StubComs_sco_log_get: Final[StubComs_sco_log_get] = StubComs_sco_log_get()$?;"	v	typeref:typename:Final[StubComs_sco_log_get]
 g_StubComs_sco_log_get_get	/home/sakae/st19740208/publish/python_package/sco_stub/sco_log/sco_log_get.py	?^def g_StubComs_sco_log_get_get() -> StubComs_sco_log_get:$?;"	f	typeref:typename:StubComs_sco_log_get
+genai_2way	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^def genai_2way(chat: chats.Chat, s_in: str, s_fpath_out: str) ->\\$?;"	f	typeref:typename:tuple[Optional[Exception],Genai2WayRet]
 getLogger_stub	/home/sakae/st19740208/publish/python_package/sco_stub/logging/getLogger.py	?^def getLogger_stub(name: str) -> Optional[Logger]:$?;"	f	typeref:typename:Optional[Logger]
+input_read	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^def input_read(s_fpath_in: str) -> tuple[Optional[Exception], str]:$?;"	f	typeref:typename:tuple[Optional[Exception],str]
+input_signature	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^def input_signature(s_fpath: str) -> tuple[Optional[Exception], str, int]:$?;"	f	typeref:typename:tuple[Optional[Exception],str,int]
+input_wait	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^def input_wait(s_fpath_in: str, f_cycle_sec: float, f_last_mtime: float) ->\\$?;"	f	typeref:typename:float
 main	/home/sakae/st19740208/publish/python_package/sco_log/fd_sco_log/sco_log_usage.py	?^def main():$?;"	f
 sco_file_tail	/home/sakae/st19740208/publish/python_package/sco_file/sco_tail.py	?^def sco_file_tail(s_fpath: str, i_nline: int, s_enc: str = "utf-8")\\$?;"	f	typeref:typename:Optional[list[str]]
 sco_file_tail_read	/home/sakae/st19740208/publish/python_package/sco_file/sco_tail.py	?^def sco_file_tail_read(s_fpath: str, i_nline: int, s_enc: str = "utf-8")\\$?;"	f	typeref:typename:Optional[list[str]]
+sco_file_truncate	/home/sakae/st19740208/publish/python_package/sco_file/sco_truncate.py	?^def sco_file_truncate(s_fpath: str, i_size: int) -> Optional[Exception]:$?;"	f	typeref:typename:Optional[Exception]
+sco_ftext_append	/home/sakae/st19740208/publish/python_package/sco_file/sco_fio.py	?^def sco_ftext_append(s_fpath_out: str, s_out: str)\\$?;"	f	typeref:typename:tuple[Optional[Exception],int]
+sco_genai_chat_create	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^def sco_genai_chat_create(client: genai.Client) ->\\$?;"	f	typeref:typename:tuple[Optional[Exception],Optional[chats.Chat]]
+sco_genai_chatting	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^def sco_genai_chatting(chat: chats.Chat, s_fpath_in: str, s_fpath_out: str,$?;"	f	typeref:typename:None
+sco_genai_client	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^def sco_genai_client() ->\\$?;"	f	typeref:typename:tuple[Optional[Exception],Optional[genai.Client]]
 sco_log_get	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^def sco_log_get() -> ScoLogger:$?;"	f	typeref:typename:ScoLogger
 sco_log_get_stub	/home/sakae/st19740208/publish/python_package/sco_stub/sco_log/sco_log_get.py	?^def sco_log_get_stub() -> Optional[Logger]:$?;"	f	typeref:typename:Optional[Logger]
 sco_log_init	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^def sco_log_init() -> None:$?;"	f	typeref:typename:None
@@ -202,6 +220,7 @@ sco_ut_get_row_rng	/home/sakae/st19740208/publish/python_package/sco_ods/sco_ut.
 sco_ut_run	/home/sakae/st19740208/publish/python_package/sco_ods/sco_ut.py	?^def sco_ut_run(fname: str, sheetfnc: dict[str, SCO_UT_AN_ITEM_T]) -> ScoRc:$?;"	f	typeref:typename:ScoRc
 sco_ut_run_matrix	/home/sakae/st19740208/publish/python_package/sco_ods/sco_ut.py	?^def sco_ut_run_matrix(mat: list[list[Cell]], ut_cols: ScoUtCols, \\$?;"	f	typeref:typename:ScoRc
 sco_ut_run_sheet	/home/sakae/st19740208/publish/python_package/sco_ods/sco_ut.py	?^def sco_ut_run_sheet(sheet: Table, fnc: SCO_UT_AN_ITEM_T) -> ScoRc:$?;"	f	typeref:typename:ScoRc
+send_message	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^def send_message(chat: chats.Chat, s_in: str) ->\\$?;"	f	typeref:typename:tuple[Optional[Exception],Optional[types.GenerateContentResponse]]
 setFormatter	/home/sakae/st19740208/publish/python_package/sco_stub/logging/StreamHandler.py	?^    def setFormatter(self, fmt: Formatter) -> None:$?;"	m	class:StreamHandlerStub	typeref:typename:None
 setLevel	/home/sakae/st19740208/publish/python_package/sco_stub/logging/Logger.py	?^    def setLevel(self, level: Union[int, str]) -> None:$?;"	m	class:LoggerStub	typeref:typename:None
 setLevel	/home/sakae/st19740208/publish/python_package/sco_stub/logging/StreamHandler.py	?^    def setLevel(self, level: Union[int, str]) -> None:$?;"	m	class:StreamHandlerStub	typeref:typename:None
