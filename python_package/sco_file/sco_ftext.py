@@ -73,7 +73,7 @@ def sco_ftext_overwrite(s_fpath: str, s_write: str) ->\
     i_wrote   : int = - 1
 
     try:
-        with open(s_fpath_html, "w", encoding = "utf-8") as fio:
+        with open(s_fpath, "w", encoding = "utf-8") as fio:
             i_wrote = fio.write(s_write)
 
     except Exception as exc:

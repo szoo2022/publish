@@ -12,7 +12,7 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from sco_bas.ScoEnum import ScoEnum
 from sco_file.sco_tail import sco_str_tail
 from sco_file.sco_truncate import sco_file_truncate
-from sco_file.sco_fio import sco_ftext_append
+from sco_file.sco_ftext import sco_ftext_append
 from sco_log.sco_log import (
     ScoLogger,
     sco_log_get,
@@ -153,7 +153,7 @@ def genai_2way(chat: chats.Chat, s_in: str, s_fpath_out: str) ->\
         if not exc:
             s_time: Final[str] = time.ctime()
             s_out : Final[str] = (
-                f"\n--- Update: {s_time} ---\n"
+                f"\n--- Update: {s_time} ---  \n"
                 f"{res.text if res else 'No response content.'}\n"
             )
             exc, _ = sco_ftext_append(s_fpath_out, s_out)
