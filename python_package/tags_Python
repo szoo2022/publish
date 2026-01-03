@@ -24,7 +24,7 @@
 !_TAG_OUTPUT_VERSION	1.1	/current.age/
 !_TAG_PARSER_VERSION!Python	1.1	/current.age/
 !_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
-!_TAG_PROC_CWD	/home/sakae/st19740208/publish/python_package/sco_google/	//
+!_TAG_PROC_CWD	/home/sakae/st19740208/publish/python_package/sco_file/	//
 !_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
@@ -48,7 +48,7 @@ Expect_sco_log_init	/home/sakae/st19740208/publish/python_package/sco_log/ut_sco
 Expect_sco_log_init_set	/home/sakae/st19740208/publish/python_package/sco_log/ut_sco_log/ut_sco_log_init/Spec_sco_log_init.py	?^def Expect_sco_log_init_set(this: Expect_sco_log_init, cell_list: list[Cell], \\$?;"	f	typeref:typename:int
 FormatterStub	/home/sakae/st19740208/publish/python_package/sco_stub/logging/Formatter.py	?^class FormatterStub(Formatter):$?;"	c
 Formatter_stub	/home/sakae/st19740208/publish/python_package/sco_stub/logging/Formatter.py	?^def Formatter_stub(fmt: str) -> Formatter:$?;"	f	typeref:typename:Formatter
-GS_GENAI_MODEL	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^GS_GENAI_MODEL   : Final[str] = "models/gemini-flash-lite-latest"$?;"	v	typeref:typename:Final[str]
+GS_GENAI_MODEL	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^GS_GENAI_MODEL   : Final[str] = "models/gemini-flash-latest"$?;"	v	typeref:typename:Final[str]
 GS_INPUT_VERIFY	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^GS_INPUT_VERIFY  : Final[str] = "genai"$?;"	v	typeref:typename:Final[str]
 GS_INPUT_VERIFYUP	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^GS_INPUT_VERIFYUP: Final[str] = GS_INPUT_VERIFY + "up"$?;"	v	typeref:typename:Final[str]
 Genai2WayRet	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^class Genai2WayRet(ScoEnum):$?;"	c

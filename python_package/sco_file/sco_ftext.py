@@ -4,6 +4,8 @@
 
 import os
 import re
+import shutil
+import stat
 from typing import Optional
 
 
@@ -15,6 +17,8 @@ def sco_ftext_replace_multiline(s_fpath: str, s_regex: str, s_new: str)\
     s_ftmp: Final[str] = s_fpath + '.tmp'
 
     try:
+        original_mode: Final[int] = os.stat(s_fpath).st_mode
+
         with open(s_fpath, 'r', encoding='utf-8') as f_i, \
              open(s_ftmp , 'w', encoding='utf-8') as f_o:
 
@@ -25,6 +29,7 @@ def sco_ftext_replace_multiline(s_fpath: str, s_regex: str, s_new: str)\
                 if s_rep != s_line:
                     i_cnt += 1
 
+        os.chmod(s_ftmp, stat.S_IMODE(original_mode))
         os.replace(s_ftmp, s_fpath)
 
     except Exception as exc:

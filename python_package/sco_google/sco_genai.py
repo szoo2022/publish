@@ -22,7 +22,7 @@ from sco_log.sco_log import (
 )
 
 
-GS_GENAI_MODEL   : Final[str] = "models/gemini-flash-lite-latest"
+GS_GENAI_MODEL   : Final[str] = "models/gemini-flash-latest"
 GS_INPUT_VERIFY  : Final[str] = "genai"
 GS_INPUT_VERIFYUP: Final[str] = GS_INPUT_VERIFY + "up"
 
