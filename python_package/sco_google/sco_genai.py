@@ -6,13 +6,15 @@ import time
 import os
 from enum import auto
 from typing import Final, Optional, Callable, Any
+import glob
 from google import genai
 from google.genai import chats, types
+
 from selenium.webdriver.remote.webdriver import WebDriver
 from sco_bas.ScoEnum import ScoEnum
 from sco_file.sco_tail import sco_str_tail
 from sco_file.sco_truncate import sco_file_truncate
-from sco_file.sco_ftext import sco_ftext_append
+from sco_file.sco_ftext import sco_ftext_append, sco_ftext_read
 from sco_log.sco_log import (
     ScoLogger,
     sco_log_get,
@@ -20,14 +22,16 @@ from sco_log.sco_log import (
 )
 
 
-GS_GENAI_MODEL : Final[str] = "models/gemini-flash-lite-latest"
-GS_INPUT_VERIFY: Final[str] = "genai"
+GS_GENAI_MODEL   : Final[str] = "models/gemini-flash-lite-latest"
+GS_INPUT_VERIFY  : Final[str] = "genai"
+GS_INPUT_VERIFYUP: Final[str] = GS_INPUT_VERIFY + "up"
 
 
 class Genai2WayRet(ScoEnum):
 
     OK       : Final[int] = auto()
     EMPTY    : Final[int] = auto()
+    NG_UPLOAD: Final[int] = auto()
     NG_SEND  : Final[int] = auto()
     NG_OUTPUT: Final[int] = auto()
 
@@ -65,7 +69,8 @@ def sco_genai_chat_create(client: genai.Client) ->\
     return (result_exc, chat)
 
 
-def sco_genai_chatting(chat: chats.Chat, s_fpath_in: str, s_fpath_out: str,
+def sco_genai_chatting(chat: chats.Chat,
+    s_fpath_in: str, s_fpath_md: str, s_fpath_out: str,
     f_cb: Optional[Callable[[str, Any], None]], user: Optional[ScoGenaiUser])\
     -> None:
 
@@ -78,24 +83,25 @@ def sco_genai_chatting(chat: chats.Chat, s_fpath_in: str, s_fpath_out: str,
         send_ret: Genai2WayRet = Genai2WayRet.NG_SEND
 
         f_new_mtime = input_wait(s_fpath_in, f_cycle_sec, f_last_mtime)
-        exc, s_in, i_truncate = input_signature(s_fpath_in)
+        exc, s_in, i_truncate, as_upname =\
+            input_signature(s_fpath_in, s_fpath_md)
 
-        if (not exc) and (- 1 < i_truncate):
-            exc, send_ret = genai_2way(chat, s_in[0: i_truncate], s_fpath_out)
-
-        if not exc:
-            f_last_mtime = f_new_mtime
-            f_cycle_sec = 1.0
-        else:
-            f_cycle_sec = 10.0
+        if - 1 < i_truncate:
+            exc, send_ret = genai_2way(chat, s_in[0: i_truncate], as_upname,
+                                     s_fpath_out)
 
         if (send_ret == Genai2WayRet.OK) or (send_ret == Genai2WayRet.EMPTY):
-            exc = sco_file_truncate(s_fpath_in, i_truncate)
+            f_last_mtime = f_new_mtime
 
-            if (send_ret == Genai2WayRet.OK) and callable(f_cb):
+        if send_ret == Genai2WayRet.OK:
+            exc = sco_file_truncate(s_fpath_in, i_truncate)
+            f_cycle_sec = 1.0
+
+            if callable(f_cb):
                 f_cb(s_fpath_out, user)
 
         if exc:
+            f_cycle_sec = 60.0
             log.error(f"{exc}")
             s_last: Final[str] = sco_log_last_get()
             sco_ftext_append(s_fpath_out, s_last)
@@ -123,34 +129,53 @@ def input_wait(s_fpath_in: str, f_cycle_sec: float, f_last_mtime: float) ->\
     return f_new_mtime
 
 
-def input_signature(s_fpath: str) -> tuple[Optional[Exception], str, int]:
+def input_signature(s_fpath_in: str, s_fpath_md: str) ->\
+    tuple[Optional[Exception], str, int, list[str]]:
 
+    as_upname : list[str] = []
+    s_tail    : str = ""
     i_truncate: int = - 1
 
-    exc, s_in = input_read(s_fpath)
+    exc, s_in = sco_ftext_read(s_fpath_in)
 
     if not exc:
         i_tail, as_tail = sco_str_tail(s_in, 1)
 
         if as_tail and (0 < len(as_tail)):
-            s_tail: Final[str] = as_tail[- 1].strip()
-            if (s_tail == GS_INPUT_VERIFY):
-                ab_utf8: Final[bytes] = s_in[:i_tail].encode("utf-8")
-                i_truncate = len(ab_utf8)
+            s_tail = as_tail[- 1].strip()
 
-    return (exc, s_in, i_truncate)
+    if (s_tail == GS_INPUT_VERIFY) or (s_tail == GS_INPUT_VERIFYUP):
+        ab_utf8: Final[bytes] = s_in[:i_tail].encode("utf-8")
+        i_truncate = len(ab_utf8)
+
+    if s_tail == GS_INPUT_VERIFYUP:
+        s_md_name, s_md_ext = os.path.splitext(s_fpath_md)
+        as_upname = glob.glob(s_md_name + "[0-9]*." + s_md_ext)
+
+    return (exc, s_in, i_truncate, as_upname)
 
 
-def genai_2way(chat: chats.Chat, s_in: str, s_fpath_out: str) ->\
-    tuple[Optional[Exception], Genai2WayRet]:
+def genai_2way(chat: chats.Chat, s_in: str, as_upname: list[str],
+    s_fpath_out: str) -> tuple[Optional[Exception], Genai2WayRet]:
 
     exc : Optional[Exception] = None
     ret : Genai2WayRet = Genai2WayRet.EMPTY
 
-    if (1024 < len(s_in)) or s_in.strip():
-        exc, res = send_message(chat, s_in)
+    if (0 < len(as_upname)) or (1024 < len(s_in)) or s_in.strip():
+        ret = Genai2WayRet.OK
 
-        if not exc:
+        a_upfile: Final[list[types.File]] = upload_file_async(as_upname)
+        b_uploaded: Final[bool] = upload_file_wait(a_upfile)
+
+        if b_uploaded:
+            exc, res = chat_send_message(chat, s_in, a_upfile)
+
+            if exc:
+                ret = Genai2WayRet.NG_SEND
+        else:
+            ret = Genai2WayRet.NG_UPLOAD
+
+        if ret == Genai2WayRet.OK:
             s_time: Final[str] = time.ctime()
             s_out : Final[str] = (
                 f"\n--- Update: {s_time} ---  \n"
@@ -159,40 +184,65 @@ def genai_2way(chat: chats.Chat, s_in: str, s_fpath_out: str) ->\
             exc, _ = sco_ftext_append(s_fpath_out, s_out)
 
             if not exc:
-                ret = Genai2WayRet.OK
+                upload_file_remove(as_upname, a_upfile)
             else:
                 ret = Genai2WayRet.NG_OUTPUT
-        else:
-            ret = Genai2WayRet.NG_SEND
 
     return (exc, ret)
 
 
-def send_message(chat: chats.Chat, s_in: str) ->\
-    tuple[Optional[Exception], Optional[types.GenerateContentResponse]]:
+def upload_file_async(as_upname: list[str]) -> list[types.File]:
+
+    a_upfile: Final[list[types.File]] = []
+
+    for s_upname in as_upname:
+        upfile: Final[types.File] = genai.upload_file(path = s_upname)
+        a_upfile.append(upfile)
+
+    return a_upfile
+
+
+def upload_file_wait(a_upfile: list[types.File]) -> bool:
+
+    b_uploaded: bool = True;
+
+    for i_idx in range(len(a_upfile)):
+        while a_upfile[i_idx].state.name == "PROCESSING":
+            time.sleep(1.0)
+            a_upfile[i_idx] = genai.get_file(a_upfile[i_idx].name)
+
+        b_uploaded = (a_upfile[i_idx].state.name == "ACTIVE")
+
+        if not b_uploaded:
+            break
+
+    return b_uploaded
+
+
+def upload_file_remove(as_upname: list[str], a_upfile: list[types.File])\
+    -> None:
+
+    for upfile in a_upfile:
+        genai.delete_file(upfile.name)
+
+    for s_upname in as_upname:
+        os.remove(s_upname)
+
+
+def chat_send_message(chat: chats.Chat, s_in: str, a_upfile: list[types.File])\
+    -> tuple[Optional[Exception], Optional[types.GenerateContentResponse]]:
 
     res       : types.GenerateContentResponse = None
     result_exc: Optional[Exception] = None
 
-    try: res = chat.send_message(s_in)
+    try:
+        config: Final[types.GenerateContentConfig] =\
+            types.GenerateContentConfig(http_options = {'timeout': 10000})
+
+        res = chat.send_message(message = [s_in, *a_upfile], config = config)
     except Exception as exc:
         result_exc = exc
 
     return (result_exc, res)
-
-
-def input_read(s_fpath_in: str) -> tuple[Optional[Exception], str]:
-
-    s_in      : str = "";
-    result_exc: Optional[Exception] = None
-
-    try:
-        with open(s_fpath_in, "r", encoding="utf-8") as fio:
-            s_in = fio.read()
-
-    except Exception as exc:
-        result_exc = exc
-
-    return (result_exc, s_in)
 
 
