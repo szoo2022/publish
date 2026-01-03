@@ -22,7 +22,7 @@ from sco_log.sco_log import (
 )
 
 
-GS_GENAI_MODEL   : Final[str] = "models/gemini-flash-latest"
+GS_GENAI_MODEL   : Final[str] = "gemini-2.0-flash-lite"
 GS_INPUT_VERIFY  : Final[str] = "genai"
 GS_INPUT_VERIFYUP: Final[str] = GS_INPUT_VERIFY + "up"
 
@@ -69,15 +69,14 @@ def sco_genai_chat_create(client: genai.Client) ->\
     return (result_exc, chat)
 
 
-def sco_genai_chatting(chat: chats.Chat,
-    s_fpath_in: str, s_fpath_md: str, s_fpath_out: str,
+def sco_genai_chatting(client: genai.Client, chat: chats.Chat,
+    s_fpath_in: str, s_fpath_md: str, s_fpath_list: str, s_fpath_out: str,
     f_cb: Optional[Callable[[str, Any], None]], user: Optional[ScoGenaiUser])\
     -> None:
 
     f_cycle_sec : float = 1.0
     f_last_mtime: float = - 1.0
     f_new_mtime : float
-    log         : Final[ScoLogger] = sco_log_get()
 
     while True:
         send_ret: Genai2WayRet = Genai2WayRet.NG_SEND
@@ -87,8 +86,8 @@ def sco_genai_chatting(chat: chats.Chat,
             input_signature(s_fpath_in, s_fpath_md)
 
         if - 1 < i_truncate:
-            exc, send_ret = genai_2way(chat, s_in[0: i_truncate], as_upname,
-                                     s_fpath_out)
+            exc, send_ret = genai_2way(client, chat, s_in[0: i_truncate],
+                                     as_upname, s_fpath_list, s_fpath_out)
 
         if (send_ret == Genai2WayRet.OK) or (send_ret == Genai2WayRet.EMPTY):
             f_last_mtime = f_new_mtime
@@ -101,10 +100,17 @@ def sco_genai_chatting(chat: chats.Chat,
                 f_cb(s_fpath_out, user)
 
         if exc:
-            f_cycle_sec = 60.0
-            log.error(f"{exc}")
-            s_last: Final[str] = sco_log_last_get()
-            sco_ftext_append(s_fpath_out, s_last)
+            chatting_exception(exc, s_fpath_out)
+
+
+def chatting_exception(exc: Exception, s_fpath_out: str) -> None:
+
+    log: Final[ScoLogger] = sco_log_get()
+
+    f_cycle_sec = 60.0
+    log.error(f"{exc}")
+    s_last: Final[str] = sco_log_last_get()
+    sco_ftext_append(s_fpath_out, s_last)
 
 
 def input_wait(s_fpath_in: str, f_cycle_sec: float, f_last_mtime: float) ->\
@@ -150,13 +156,14 @@ def input_signature(s_fpath_in: str, s_fpath_md: str) ->\
 
     if s_tail == GS_INPUT_VERIFYUP:
         s_md_name, s_md_ext = os.path.splitext(s_fpath_md)
-        as_upname = glob.glob(s_md_name + "[0-9]*." + s_md_ext)
+        as_upname = glob.glob(s_md_name + "[0-9]*" + s_md_ext)
 
     return (exc, s_in, i_truncate, as_upname)
 
 
-def genai_2way(chat: chats.Chat, s_in: str, as_upname: list[str],
-    s_fpath_out: str) -> tuple[Optional[Exception], Genai2WayRet]:
+def genai_2way(client: genai.Client, chat: chats.Chat, s_in: str,
+    as_upname: list[str], s_fpath_list: str, s_fpath_out: str)\
+    -> tuple[Optional[Exception], Genai2WayRet]:
 
     exc : Optional[Exception] = None
     ret : Genai2WayRet = Genai2WayRet.EMPTY
@@ -164,11 +171,11 @@ def genai_2way(chat: chats.Chat, s_in: str, as_upname: list[str],
     if (0 < len(as_upname)) or (1024 < len(s_in)) or s_in.strip():
         ret = Genai2WayRet.OK
 
-        a_upfile: Final[list[types.File]] = upload_file_async(as_upname)
+        a_upfile: Final[list[types.File]] = upload_file_async(client, as_upname)
         b_uploaded: Final[bool] = upload_file_wait(a_upfile)
 
         if b_uploaded:
-            exc, res = chat_send_message(chat, s_in, a_upfile)
+            exc, res = chat_send_message(client, chat, s_in, a_upfile)
 
             if exc:
                 ret = Genai2WayRet.NG_SEND
@@ -184,21 +191,25 @@ def genai_2way(chat: chats.Chat, s_in: str, as_upname: list[str],
             exc, _ = sco_ftext_append(s_fpath_out, s_out)
 
             if not exc:
-                upload_file_remove(as_upname, a_upfile)
+                upload_file_remove(as_upname, s_fpath_list)
             else:
                 ret = Genai2WayRet.NG_OUTPUT
 
     return (exc, ret)
 
 
-def upload_file_async(as_upname: list[str]) -> list[types.File]:
+def upload_file_async(client: genai.Client, as_upname: list[str]) ->\
+    list[types.File]:
 
     a_upfile: Final[list[types.File]] = []
 
+    print("upload_file_async start")
+
     for s_upname in as_upname:
-        upfile: Final[types.File] = genai.upload_file(path = s_upname)
+        upfile: Final[types.File] = client.files.upload(file = s_upname)
         a_upfile.append(upfile)
 
+    print("upload_file_async finish")
     return a_upfile
 
 
@@ -210,26 +221,28 @@ def upload_file_wait(a_upfile: list[types.File]) -> bool:
         while a_upfile[i_idx].state.name == "PROCESSING":
             time.sleep(1.0)
             a_upfile[i_idx] = genai.get_file(a_upfile[i_idx].name)
+            print("upload processing")
 
         b_uploaded = (a_upfile[i_idx].state.name == "ACTIVE")
 
         if not b_uploaded:
             break
 
+    print("upload active %d" % b_uploaded)
     return b_uploaded
 
 
-def upload_file_remove(as_upname: list[str], a_upfile: list[types.File])\
-    -> None:
-
-    for upfile in a_upfile:
-        genai.delete_file(upfile.name)
+def upload_file_remove(as_upname: list[str], s_fpath_list: str) -> None:
 
     for s_upname in as_upname:
         os.remove(s_upname)
 
+    if 0 < len(as_upname):
+        exc = sco_file_truncate(s_fpath_list, 0)
 
-def chat_send_message(chat: chats.Chat, s_in: str, a_upfile: list[types.File])\
+
+def chat_send_message(client: genai.Client, chat: chats.Chat, s_in: str,
+    a_upfile: list[types.File])\
     -> tuple[Optional[Exception], Optional[types.GenerateContentResponse]]:
 
     res       : types.GenerateContentResponse = None
@@ -237,11 +250,15 @@ def chat_send_message(chat: chats.Chat, s_in: str, a_upfile: list[types.File])\
 
     try:
         config: Final[types.GenerateContentConfig] =\
-            types.GenerateContentConfig(http_options = {'timeout': 10000})
+            types.GenerateContentConfig(http_options = {'timeout': 120 * 1000})
 
         res = chat.send_message(message = [s_in, *a_upfile], config = config)
     except Exception as exc:
         result_exc = exc
+
+    finally:
+        for upfile in a_upfile:
+            client.files.delete(name = upfile.name)
 
     return (result_exc, res)
 
