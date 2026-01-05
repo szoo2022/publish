@@ -22,7 +22,7 @@ from sco_log.sco_log import (
 )
 
 
-GS_GENAI_MODEL   : Final[str] = "gemini-2.0-flash"
+GS_GENAI_MODEL   : Final[str] = "gemini-2.5-flash"
 GS_INPUT_VERIFY  : Final[str] = "genai"
 GS_INPUT_VERIFYUP: Final[str] = GS_INPUT_VERIFY + "up"
 
@@ -262,4 +262,15 @@ def chat_send_message(client: genai.Client, chat: chats.Chat, s_in: str,
 
     return (result_exc, res)
 
+
+def sco_genai_model(client: genai.Client) -> list[str]:
+
+    a_model: Final[list[types.Model]] = client.models.list()
+    as_name: Final[list[str]] = []
+
+    for model in a_model:
+        if 'generateContent' in model.supported_actions:
+            as_name.append(model.name)
+
+    return as_name
 

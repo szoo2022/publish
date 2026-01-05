@@ -48,7 +48,7 @@ Expect_sco_log_init	/home/sakae/st19740208/publish/python_package/sco_log/ut_sco
 Expect_sco_log_init_set	/home/sakae/st19740208/publish/python_package/sco_log/ut_sco_log/ut_sco_log_init/Spec_sco_log_init.py	?^def Expect_sco_log_init_set(this: Expect_sco_log_init, cell_list: list[Cell], \\$?;"	f	typeref:typename:int
 FormatterStub	/home/sakae/st19740208/publish/python_package/sco_stub/logging/Formatter.py	?^class FormatterStub(Formatter):$?;"	c
 Formatter_stub	/home/sakae/st19740208/publish/python_package/sco_stub/logging/Formatter.py	?^def Formatter_stub(fmt: str) -> Formatter:$?;"	f	typeref:typename:Formatter
-GS_GENAI_MODEL	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^GS_GENAI_MODEL   : Final[str] = "gemini-2.0-flash-lite"$?;"	v	typeref:typename:Final[str]
+GS_GENAI_MODEL	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^GS_GENAI_MODEL   : Final[str] = "gemini-2.5-flash"$?;"	v	typeref:typename:Final[str]
 GS_INPUT_VERIFY	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^GS_INPUT_VERIFY  : Final[str] = "genai"$?;"	v	typeref:typename:Final[str]
 GS_INPUT_VERIFYUP	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^GS_INPUT_VERIFYUP: Final[str] = GS_INPUT_VERIFY + "up"$?;"	v	typeref:typename:Final[str]
 Genai2WayRet	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^class Genai2WayRet(ScoEnum):$?;"	c
@@ -197,9 +197,16 @@ getLogger_stub	/home/sakae/st19740208/publish/python_package/sco_stub/logging/ge
 input_signature	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^def input_signature(s_fpath_in: str, s_fpath_md: str) ->\\$?;"	f	typeref:typename:tuple[Optional[Exception],str,int,list[str]]
 input_wait	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^def input_wait(s_fpath_in: str, f_cycle_sec: float, f_last_mtime: float) ->\\$?;"	f	typeref:typename:float
 main	/home/sakae/st19740208/publish/python_package/sco_log/fd_sco_log/sco_log_usage.py	?^def main():$?;"	f
+makefile_variable_set	/home/sakae/st19740208/publish/python_package/sco_mk/sco_mk.py	?^def makefile_variable_set(s_mk: str, s_var: str, s_val: str) -> None:$?;"	f	typeref:typename:None
+sco_browser_switch_to_window	/home/sakae/st19740208/publish/python_package/sco_browser/sco_browser.py	?^def sco_browser_switch_to_window(web_drv: WebDriver, s_handle: str) ->\\$?;"	f	typeref:typename:Optional[Exception]
+sco_browser_tab_search	/home/sakae/st19740208/publish/python_package/sco_browser/sco_browser.py	?^def sco_browser_tab_search(web_drv: WebDriver, s_url: str) -> list[str]:$?;"	f	typeref:typename:list[str]
+sco_browser_tab_update	/home/sakae/st19740208/publish/python_package/sco_browser/sco_browser.py	?^def sco_browser_tab_update(web_drv: WebDriver, as_handle: list[str]) -> None:$?;"	f	typeref:typename:None
 sco_file_tail	/home/sakae/st19740208/publish/python_package/sco_file/sco_tail.py	?^def sco_file_tail(s_fpath: str, i_nline: int, s_enc: str = "utf-8")\\$?;"	f	typeref:typename:Optional[list[str]]
 sco_file_tail_read	/home/sakae/st19740208/publish/python_package/sco_file/sco_tail.py	?^def sco_file_tail_read(s_fpath: str, i_nline: int, s_enc: str = "utf-8")\\$?;"	f	typeref:typename:Optional[list[str]]
 sco_file_truncate	/home/sakae/st19740208/publish/python_package/sco_file/sco_truncate.py	?^def sco_file_truncate(s_fpath: str, i_size: int) -> Optional[Exception]:$?;"	f	typeref:typename:Optional[Exception]
+sco_firefox_ensure	/home/sakae/st19740208/publish/python_package/sco_browser/sco_firefox.py	?^def sco_firefox_ensure(web_drv) -> WebDriver:$?;"	f	typeref:typename:WebDriver
+sco_firefox_fpath	/home/sakae/st19740208/publish/python_package/sco_browser/sco_firefox.py	?^def sco_firefox_fpath() -> str:$?;"	f	typeref:typename:str
+sco_firefox_launch	/home/sakae/st19740208/publish/python_package/sco_browser/sco_firefox.py	?^def sco_firefox_launch() -> WebDriver:$?;"	f	typeref:typename:WebDriver
 sco_ftext_append	/home/sakae/st19740208/publish/python_package/sco_file/sco_ftext.py	?^def sco_ftext_append(s_fpath: str, s_write: str)\\$?;"	f	typeref:typename:tuple[Optional[Exception],int]
 sco_ftext_overwrite	/home/sakae/st19740208/publish/python_package/sco_file/sco_ftext.py	?^def sco_ftext_overwrite(s_fpath: str, s_write: str) ->\\$?;"	f	typeref:typename:tuple[Optional[Exception],int]
 sco_ftext_read	/home/sakae/st19740208/publish/python_package/sco_file/sco_ftext.py	?^def sco_ftext_read(s_fpath: str) -> tuple[Optional[Exception], Optional[str]]:$?;"	f	typeref:typename:tuple[Optional[Exception],Optional[str]]
@@ -207,11 +214,13 @@ sco_ftext_replace_multiline	/home/sakae/st19740208/publish/python_package/sco_fi
 sco_genai_chat_create	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^def sco_genai_chat_create(client: genai.Client) ->\\$?;"	f	typeref:typename:tuple[Optional[Exception],Optional[chats.Chat]]
 sco_genai_chatting	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^def sco_genai_chatting(client: genai.Client, chat: chats.Chat,$?;"	f	typeref:typename:None
 sco_genai_client	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^def sco_genai_client() ->\\$?;"	f	typeref:typename:tuple[Optional[Exception],Optional[genai.Client]]
+sco_genai_model	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^def sco_genai_model(client: genai.Client) -> list[str]:$?;"	f	typeref:typename:list[str]
 sco_log_get	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^def sco_log_get() -> ScoLogger:$?;"	f	typeref:typename:ScoLogger
 sco_log_get_stub	/home/sakae/st19740208/publish/python_package/sco_stub/sco_log/sco_log_get.py	?^def sco_log_get_stub() -> Optional[Logger]:$?;"	f	typeref:typename:Optional[Logger]
 sco_log_init	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^def sco_log_init() -> None:$?;"	f	typeref:typename:None
 sco_log_last_get	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^def sco_log_last_get() -> str:$?;"	f	typeref:typename:str
 sco_log_tee	/home/sakae/st19740208/publish/python_package/sco_log/sco_log.py	?^def sco_log_tee(log: Logger, s_fpath: str):$?;"	f
+sco_md2html	/home/sakae/st19740208/publish/python_package/sco_md/sco_md.py	?^def sco_md2html(s_md: str) -> str:$?;"	f	typeref:typename:str
 sco_mmap_tail	/home/sakae/st19740208/publish/python_package/sco_file/sco_tail.py	?^def sco_mmap_tail(mio: mmap, i_nline: int) -> list[bytes]:$?;"	f	typeref:typename:list[bytes]
 sco_module_eval	/home/sakae/st19740208/publish/python_package/sco_bas/sco_bltin.py	?^def sco_module_eval(frm: str, imp: str) -> tuple[ScoRc, Any]:$?;"	f	typeref:typename:tuple[ScoRc,Any]
 sco_ods_get_col_rng	/home/sakae/st19740208/publish/python_package/sco_ods/sco_ods.py	?^def sco_ods_get_col_rng(mat: list[list[Cell]], col_name: str) \\$?;"	f	typeref:typename:tuple[int,ScoOdsRng]
