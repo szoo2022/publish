@@ -8,6 +8,10 @@ import shutil
 import stat
 from typing import Optional
 
+from .sco_truncate import (
+    sco_file_truncate
+)
+
 
 def sco_ftext_replace_multiline(s_fpath: str, s_regex: str, s_new: str)\
     -> tuple[Optional[Exception], int]:
@@ -47,8 +51,8 @@ def sco_ftext_append(s_fpath: str, s_write: str)\
     i_wrote   : int = - 1
 
     try:
-        with open(s_fpath, "a", encoding="utf-8") as fio:
-            i_wrote = fio.write(s_write)
+        with open(s_fpath, "a", encoding="utf-8") as f_o:
+            i_wrote = f_o.write(s_write)
 
     except Exception as exc:
         result_exc = exc
@@ -62,13 +66,29 @@ def sco_ftext_read(s_fpath: str) -> tuple[Optional[Exception], Optional[str]]:
     s_read    : Optional[str] = None
 
     try:
-        with open(s_fpath, "r", encoding = "utf-8") as fio:
-            s_read = fio.read()
+        with open(s_fpath, "r", encoding = "utf-8") as f_i:
+            s_read = f_i.read()
 
     except Exception as exc:
         result_exc = exc
 
     return (result_exc, s_read)
+
+
+def sco_ftext_reads(s_fpath: str) ->\
+    tuple[Optional[Exception], Optional[list[str]]]:
+
+    result_exc: Optional[Exception] = None
+    as_read   : Optional[list[str]] = None
+
+    try:
+        with open(s_fpath, "r", encoding = "utf-8") as f_i:
+            as_read = f_i.readlines()
+
+    except Exception as exc:
+        result_exc = exc
+
+    return (result_exc, as_read)
 
 
 def sco_ftext_overwrite(s_fpath: str, s_write: str) ->\
@@ -78,11 +98,43 @@ def sco_ftext_overwrite(s_fpath: str, s_write: str) ->\
     i_wrote   : int = - 1
 
     try:
-        with open(s_fpath, "w", encoding = "utf-8") as fio:
-            i_wrote = fio.write(s_write)
+        with open(s_fpath, "w", encoding = "utf-8") as f_o:
+            i_wrote = f_o.write(s_write)
 
     except Exception as exc:
         result_exc = exc
 
     return (result_exc, i_wrote)
+
+
+def sco_ftext_rstrip(s_fpath: str) -> tuple[Optional[Exception], int, int]:
+
+    i_seek_cur    : int = - 1
+    i_seek_end    : int = - 1
+    i_seek_end_ret: int = - 1
+    result_exc: Optional[Exception] = None
+
+    try:
+        with open(s_fpath, "rb") as f_i:
+            f_i.seek(0, os.SEEK_END)
+            i_seek_end = f_i.tell()
+
+            for i_seek_cur in range(i_seek_end - 1, - 1, - 1):
+                f_i.seek(i_seek_cur)
+                char: bytes = f_i.read(1)
+                s_char: str = char_b.decode('latin-1')
+
+                if (char.isprint()):
+                    break;
+            else:
+                i_seek_cur = - 1
+
+        i_seek_end_ret = i_seek_cur + 1
+        result_exc = sco_file_truncate(s_fpath, i_seek_end_ret)
+
+    except (OSError, UnicodeDecodeError) as exc:
+        result_exc = exc
+
+    return (result_exc, i_seek_end, i_seek_end_ret)
+
 

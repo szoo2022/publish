@@ -4,6 +4,8 @@
 
 import time
 import os
+import re
+from datetime import datetime
 from enum import auto
 from typing import Final, Optional, Callable, Any
 import glob
@@ -12,9 +14,14 @@ from google.genai import chats, types
 
 from selenium.webdriver.remote.webdriver import WebDriver
 from sco_bas.ScoEnum import ScoEnum
-from sco_file.sco_tail import sco_str_tail
 from sco_file.sco_truncate import sco_file_truncate
-from sco_file.sco_ftext import sco_ftext_append, sco_ftext_read
+
+from sco_file.sco_ftext import (
+    sco_ftext_append,
+    sco_ftext_reads,
+    sco_ftext_rstrip
+)
+
 from sco_log.sco_log import (
     ScoLogger,
     sco_log_get,
@@ -22,7 +29,7 @@ from sco_log.sco_log import (
 )
 
 
-GS_GENAI_MODEL   : Final[str] = "gemini-2.5-flash"
+GS_GENAI_MODEL   : Final[str] = "gemini-3.1-flash-lite-preview"
 GS_INPUT_VERIFY  : Final[str] = "genai"
 GS_INPUT_VERIFYUP: Final[str] = GS_INPUT_VERIFY + "up"
 
@@ -82,35 +89,59 @@ def sco_genai_chatting(client: genai.Client, chat: chats.Chat,
         send_ret: Genai2WayRet = Genai2WayRet.NG_SEND
 
         f_new_mtime = input_wait(s_fpath_in, f_cycle_sec, f_last_mtime)
-        exc, s_in, i_truncate, as_upname =\
-            input_signature(s_fpath_in, s_fpath_md)
+        exc, s_send, as_upname = input_signature(s_fpath_in, s_fpath_md)
 
-        if - 1 < i_truncate:
-            exc, send_ret = genai_2way(client, chat, s_in[0: i_truncate],
-                                     as_upname, s_fpath_list, s_fpath_out)
+        if s_send:
+            exc, send_ret = genai_2way(client, chat, s_send, as_upname,
+                                        s_fpath_list, s_fpath_out)
 
         if (send_ret == Genai2WayRet.OK) or (send_ret == Genai2WayRet.EMPTY):
             f_last_mtime = f_new_mtime
 
         if send_ret == Genai2WayRet.OK:
-            exc = sco_file_truncate(s_fpath_in, i_truncate)
+            exc = chatting_2way_ok(s_fpath_in, s_fpath_out, f_cb, user)
             f_cycle_sec = 1.0
 
-            if callable(f_cb):
-                f_cb(s_fpath_out, user)
-
         if exc:
-            chatting_exception(exc, s_fpath_out)
+            chatting_exception(exc, s_fpath_out, f_cb, user)
+            f_cycle_sec = 60.0
 
 
-def chatting_exception(exc: Exception, s_fpath_out: str) -> None:
+def chatting_2way_ok(s_fpath_in: str, s_fpath_out: str,
+    f_cb: Optional[Callable[[str, Any], None]], user: Optional[ScoGenaiUser])\
+    -> Optional[Exception]:
+
+    exc       : Optional[Exception]
+    i_wrote   : int
+    i_size_org: int
+    i_size_new: int
+    i_wrote   : int
+    now       : Final[datetime] = datetime.now()
+    s_now     : Final[str] = " " + now.strftime("%Y/%m/%d/%H:%M:%S") + "\n"
+
+    exc, i_size_org, i_size_new = sco_ftext_rstrip(s_fpath_in)
+
+    if not exc:
+        exc, i_wrote = sco_ftext_append(s_fpath_in, s_now)
+
+    if callable(f_cb):
+        f_cb(s_fpath_out, user)
+
+    return exc
+
+
+def chatting_exception(exc: Exception, s_fpath_out: str,
+    f_cb: Optional[Callable[[str, Any], None]], user: Optional[ScoGenaiUser])\
+    -> None:
 
     log: Final[ScoLogger] = sco_log_get()
 
-    f_cycle_sec = 60.0
     log.error(f"{exc}")
     s_last: Final[str] = sco_log_last_get()
     sco_ftext_append(s_fpath_out, s_last)
+
+    if callable(f_cb):
+        f_cb(s_fpath_out, user)
 
 
 def input_wait(s_fpath_in: str, f_cycle_sec: float, f_last_mtime: float) ->\
@@ -138,27 +169,52 @@ def input_wait(s_fpath_in: str, f_cycle_sec: float, f_last_mtime: float) ->\
 def input_signature(s_fpath_in: str, s_fpath_md: str) ->\
     tuple[Optional[Exception], str, int, list[str]]:
 
-    as_upname : list[str] = []
-    s_tail    : str = ""
-    i_truncate: int = - 1
+    exc      : Optional[Exception]
+    as_read  : Final[list[str]]
+    as_upname: list[str] = []
+    s_tail   : str = ""
+    s_send   : str = ""
 
-    exc, s_in = sco_ftext_read(s_fpath_in)
+    exc, as_read = sco_ftext_reads(s_fpath_in)
 
-    if not exc:
-        i_tail, as_tail = sco_str_tail(s_in, 1)
-
-        if as_tail and (0 < len(as_tail)):
-            s_tail = as_tail[- 1].strip()
+    if (not exc) and as_read and (0 < len(as_read)):
+        s_tail = as_read[- 1].strip()
 
     if (s_tail == GS_INPUT_VERIFY) or (s_tail == GS_INPUT_VERIFYUP):
-        ab_utf8: Final[bytes] = s_in[:i_tail].encode("utf-8")
-        i_truncate = len(ab_utf8)
+        s_send = input_extract(as_read)
 
     if s_tail == GS_INPUT_VERIFYUP:
         s_md_name, s_md_ext = os.path.splitext(s_fpath_md)
         as_upname = glob.glob(s_md_name + "[0-9]*" + s_md_ext)
 
-    return (exc, s_in, i_truncate, as_upname)
+    return (exc, s_send, as_upname)
+
+
+def input_extract(as_read: Final[list[str]]) -> str:
+
+    s_verify: Final[str] = re.escape(GS_INPUT_VERIFY)
+    as_line : Final[list[str]] = []
+    s_line  : str
+
+    r_start = re.compile(rf"^\s*{s_verify}[a-z]*\s+\d")
+    r_end   = re.compile(rf"^\s*{s_verify}[a-z]*\s*$")
+
+    for s_line in as_read:
+        match_regex: Optional[re.Match] = r_start.match(s_line)
+
+        if match_regex:
+            as_line.clear()
+        else:
+            match_regex = r_end.match(s_line)
+
+            if (match_regex):
+                break
+            else:
+                as_line.append(s_line)
+
+    s_line = "".join(as_line)
+    s_line = s_line.strip()
+    return s_line
 
 
 def genai_2way(client: genai.Client, chat: chats.Chat, s_in: str,
