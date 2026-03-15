@@ -107,8 +107,10 @@ def sco_ftext_overwrite(s_fpath: str, s_write: str) ->\
     return (result_exc, i_wrote)
 
 
+# Supported for UTF-8, ASCII, SHIFT-JIS
 def sco_ftext_rstrip(s_fpath: str) -> tuple[Optional[Exception], int, int]:
 
+    i_space       : Final[int] = b' '[0]
     i_seek_cur    : int = - 1
     i_seek_end    : int = - 1
     i_seek_end_ret: int = - 1
@@ -122,9 +124,8 @@ def sco_ftext_rstrip(s_fpath: str) -> tuple[Optional[Exception], int, int]:
             for i_seek_cur in range(i_seek_end - 1, - 1, - 1):
                 f_i.seek(i_seek_cur)
                 char: bytes = f_i.read(1)
-                s_char: str = char_b.decode('latin-1')
 
-                if (char.isprint()):
+                if (i_space < char[0]):
                     break;
             else:
                 i_seek_cur = - 1

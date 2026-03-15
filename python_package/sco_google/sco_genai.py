@@ -117,7 +117,7 @@ def chatting_2way_ok(s_fpath_in: str, s_fpath_out: str,
     i_size_new: int
     i_wrote   : int
     now       : Final[datetime] = datetime.now()
-    s_now     : Final[str] = " " + now.strftime("%Y/%m/%d/%H:%M:%S") + "\n"
+    s_now     : Final[str] = " " + now.strftime("%Y/%m/%d/%H:%M:%S") + "\n\n"
 
     exc, i_size_org, i_size_new = sco_ftext_rstrip(s_fpath_in)
 
