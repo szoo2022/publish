@@ -215,7 +215,7 @@ sco_ftext_read	/home/sakae/st19740208/publish/python_package/sco_file/sco_ftext.
 sco_ftext_reads	/home/sakae/st19740208/publish/python_package/sco_file/sco_ftext.py	?^def sco_ftext_reads(s_fpath: str) ->\\$?;"	f	typeref:typename:tuple[Optional[Exception],Optional[list[str]]]
 sco_ftext_replace_multiline	/home/sakae/st19740208/publish/python_package/sco_file/sco_ftext.py	?^def sco_ftext_replace_multiline(s_fpath: str, s_regex: str, s_new: str)\\$?;"	f	typeref:typename:tuple[Optional[Exception],int]
 sco_ftext_rstrip	/home/sakae/st19740208/publish/python_package/sco_file/sco_ftext.py	?^def sco_ftext_rstrip(s_fpath: str) -> tuple[Optional[Exception], int, int]:$?;"	f	typeref:typename:tuple[Optional[Exception],int,int]
-sco_genai_chat_create	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^def sco_genai_chat_create(client: genai.Client) ->\\$?;"	f	typeref:typename:tuple[Optional[Exception],Optional[chats.Chat]]
+sco_genai_chat_create	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^def sco_genai_chat_create(client: genai.Client,$?;"	f	typeref:typename:tuple[Optional[Exception],Optional[chats.Chat]]
 sco_genai_chatting	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^def sco_genai_chatting(client: genai.Client, chat: chats.Chat,$?;"	f	typeref:typename:None
 sco_genai_client	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^def sco_genai_client() ->\\$?;"	f	typeref:typename:tuple[Optional[Exception],Optional[genai.Client]]
 sco_genai_model	/home/sakae/st19740208/publish/python_package/sco_google/sco_genai.py	?^def sco_genai_model(client: genai.Client) -> list[str]:$?;"	f	typeref:typename:list[str]

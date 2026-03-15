@@ -63,13 +63,14 @@ def sco_genai_client() ->\
     return (result_exc, client)
 
 
-def sco_genai_chat_create(client: genai.Client) ->\
+def sco_genai_chat_create(client: genai.Client,
+    history: list[types.ContentDict]) ->\
     tuple[Optional[Exception], Optional[chats.Chat]]:
 
     chat      : Optional[chats.Chat] = None
     result_exc: Optional[Exception]  = None
 
-    try: chat = client.chats.create(model = GS_GENAI_MODEL)
+    try: chat = client.chats.create(model = GS_GENAI_MODEL, history = history)
     except Exception as exc:
         result_exc = exc
 
@@ -99,7 +100,8 @@ def sco_genai_chatting(client: genai.Client, chat: chats.Chat,
             f_last_mtime = f_new_mtime
 
         if send_ret == Genai2WayRet.OK:
-            exc = chatting_2way_ok(s_fpath_in, s_fpath_out, f_cb, user)
+            exc = chatting_2way_ok(s_fpath_in, s_fpath_out, chat.get_history(),
+                                     f_cb, user)
             f_cycle_sec = 1.0
 
         if exc:
@@ -108,6 +110,7 @@ def sco_genai_chatting(client: genai.Client, chat: chats.Chat,
 
 
 def chatting_2way_ok(s_fpath_in: str, s_fpath_out: str,
+    history: list[types.ContentDict],
     f_cb: Optional[Callable[[str, Any], None]], user: Optional[ScoGenaiUser])\
     -> Optional[Exception]:
 
@@ -117,7 +120,7 @@ def chatting_2way_ok(s_fpath_in: str, s_fpath_out: str,
     i_size_new: int
     i_wrote   : int
     now       : Final[datetime] = datetime.now()
-    s_now     : Final[str] = " " + now.strftime("%Y/%m/%d/%H:%M:%S") + "\n\n"
+    s_now     : Final[str] = " " + now.strftime("%Y/%m/%d/%H:%M:%S") + "\n"
 
     exc, i_size_org, i_size_new = sco_ftext_rstrip(s_fpath_in)
 
@@ -125,7 +128,7 @@ def chatting_2way_ok(s_fpath_in: str, s_fpath_out: str,
         exc, i_wrote = sco_ftext_append(s_fpath_in, s_now)
 
     if callable(f_cb):
-        f_cb(s_fpath_out, user)
+        f_cb(s_fpath_out, history, user)
 
     return exc
 
@@ -141,7 +144,7 @@ def chatting_exception(exc: Exception, s_fpath_out: str,
     sco_ftext_append(s_fpath_out, s_last)
 
     if callable(f_cb):
-        f_cb(s_fpath_out, user)
+        f_cb(s_fpath_out, None, user)
 
 
 def input_wait(s_fpath_in: str, f_cycle_sec: float, f_last_mtime: float) ->\
