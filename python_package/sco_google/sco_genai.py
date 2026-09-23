@@ -29,7 +29,7 @@ from sco_log.sco_log import (
 )
 
 
-GS_GENAI_MODEL   : Final[str] = "gemini-3.1-flash-lite-preview"
+GS_GENAI_MODEL   : Final[str] = "gemini-3.5-flash-lite"
 GS_INPUT_VERIFY  : Final[str] = "genai"
 GS_INPUT_VERIFYUP: Final[str] = GS_INPUT_VERIFY + "up"
 
@@ -196,25 +196,25 @@ def input_signature(s_fpath_in: str, s_fpath_md: str) ->\
 def input_extract(as_read: Final[list[str]]) -> str:
 
     s_verify: Final[str] = re.escape(GS_INPUT_VERIFY)
+    match_end: Optional[re.Match] = None
     as_line : Final[list[str]] = []
     s_line  : str
 
     r_start = re.compile(rf"^\s*{s_verify}[a-z]*\s+\d")
     r_end   = re.compile(rf"^\s*{s_verify}[a-z]*\s*$")
 
-    for s_line in as_read:
-        match_regex: Optional[re.Match] = r_start.match(s_line)
+    for s_line in reversed(as_read):
+        if match_end:
+            match_start: Optional[re.Match] = r_start.match(s_line)
 
-        if match_regex:
-            as_line.clear()
-        else:
-            match_regex = r_end.match(s_line)
-
-            if (match_regex):
+            if match_start:
                 break
             else:
                 as_line.append(s_line)
+        else:
+            match_end = r_end.match(s_line)
 
+    as_line.reverse()
     s_line = "".join(as_line)
     s_line = s_line.strip()
     return s_line
