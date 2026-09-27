@@ -16,6 +16,15 @@ def sco_md2html(s_md: str) -> str:
 <html>
 <head>
     <meta charset="utf-8">
+    <script>
+        MathJax = {{
+            tex: {{
+                inlineMath: [['$', '$'], ['\\\\(', '\\\\)']],
+                displayMath: [['$$', '$$'], ['\\\\[', '\\\\]']]
+            }}
+        }};
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         /* General page styles */
         body {{ 
